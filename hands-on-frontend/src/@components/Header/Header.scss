@@ -1,0 +1,54 @@
+@import "../../scss/variables";
+
+header {
+  cursor: default;
+  width: calc(100% - 20px);
+  background-color: $secondary-color;
+  text-align: left;
+  padding: 10px;
+  border: none;
+  display: inline-flex;
+
+  ul {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    li {
+      list-style: none;
+      margin-right: 15px;
+
+      &:hover {
+        a,
+        .material-icons {
+          color: $hover-color;
+          transition: all 500ms;
+        }
+      }
+
+      a {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+        text-decoration: none !important;
+        font-size: 14px;
+        color: $primary-color;
+        font-weight: 600;
+      }
+
+      .active {
+        color: $hover-color;
+
+        .material-icons {
+          color: $hover-color;
+        }
+      }
+    }
+  }
+}
+
+.material-icons {
+  color: $primary-color;
+}
