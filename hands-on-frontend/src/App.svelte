@@ -1,12 +1,13 @@
 <script>
 	import { Router, Route } from "svelte-navigator";
 	import Header from "./@components/Header.svelte";
+	import Breadcrumb from "./@components/Breadcrumb.svelte";
 </script>
 
 <Router>
-	<main>
-		<Header />
+	<Header />
 
+	<main>
 		<Route path="/">
 			<section class="content">
 				<h1>Home Page</h1>
@@ -14,12 +15,16 @@
 		</Route>
 
 		<Route path="/posts">
+			<Breadcrumb pageName={"Posts"} />
+
 			<section class="content">
 				<h1>Posts Page</h1>
 			</section>
 		</Route>
 
 		<Route path="/users">
+			<Breadcrumb pageName={"Usuários"} />
+
 			<section class="content">
 				<h1>Users Page</h1>
 			</section>
@@ -28,7 +33,7 @@
 </Router>
 
 <style>
-	.content {
+	main {
 		width: 80%;
 		margin-left: 207px;
 		margin-top: 25px;
