@@ -1,12 +1,12 @@
 import { NgModule } from "@angular/core";
 import { BreacrumbModule } from "src/@components/Breadcrumb/Breadcrumb.module";
-import { HomePage } from "./Home.page";
+import { PostsPage } from "./Posts.page";
 
 @NgModule({
-  declarations: [HomePage],
-  exports: [HomePage],
+  declarations: [PostsPage],
+  exports: [PostsPage],
   imports: [
     BreacrumbModule
   ]
 })
-export class HomeModule { }
+export class PostsModule { }

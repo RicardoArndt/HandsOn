@@ -4,8 +4,8 @@ import { Component } from "@angular/core";
   template: `
     <hands-on-breadcrumb></hands-on-breadcrumb>
   `,
-  styleUrls: ["./Home.scss"]
+  styleUrls: ["./Posts.scss"]
 })
-export class HomePage {
+export class PostsPage {
 
 }

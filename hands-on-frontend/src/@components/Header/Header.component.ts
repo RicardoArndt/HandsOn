@@ -9,7 +9,7 @@ import { Component } from "@angular/core";
 
       <ul>
         <li>
-          <a routerLink="/" routerLinkActive="active">
+          <a routerLink="/">
             <span class="material-icons">home</span>
             Home
           </a>
