@@ -1,12 +1,43 @@
 import { NgModule } from "@angular/core";
-import { BreacrumbModule } from "src/@components/Breadcrumb/Breadcrumb.module";
+import { Route, RouterModule } from "@angular/router";
+import { ButtonModule } from "../../@components/Button/Button.module";
+import { NewPostPage } from "./@subpages/NewPost/NewPost.page";
 import { PostsPage } from "./Posts.page";
 
+const routes: Route[] = [
+  {
+    path: "",
+    children: [
+      {
+        path: "",
+        component: PostsPage
+      },
+      {
+        path: "newpost",
+        component: NewPostPage,
+        data: {
+          breadcrumb: {
+            icon: "post_add",
+            name: "Nova Publicação",
+            title: "Adicionar nova Publicação"
+          }
+        }
+      }
+    ]
+  }
+];
+
 @NgModule({
-  declarations: [PostsPage],
-  exports: [PostsPage],
+  declarations: [
+    PostsPage,
+    NewPostPage
+  ],
   imports: [
-    BreacrumbModule
+    RouterModule.forChild(routes),
+    ButtonModule
+  ],
+  exports: [
+    RouterModule
   ]
 })
 export class PostsModule { }

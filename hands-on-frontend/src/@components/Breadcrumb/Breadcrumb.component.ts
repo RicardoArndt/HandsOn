@@ -1,27 +1,31 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, NavigationEnd, Router } from "@angular/router";
 import { filter, map, Observable, of } from "rxjs";
-import { Breadcrumb, IBreadcrumb } from "./Breadcrumb";
+import { BreadcrumbBuilder, BreadcrumbData, IBreadcrumbChildren, IBreadcrumbItem } from "./Breadcrumb";
 
 @Component({
   selector: "hands-on-breadcrumb",
   styleUrls: ["./Breadcrumb.scss"],
   template: `
-    <h1>{{(breadcrumbs$[breadcrumbs$.length - 1] | async)?.titlePage}}</h1>
+    <h1>{{ title$ | async }}</h1>
     <div>
       <div
         class="breadcrumb"
-        *ngFor="let breadcrumb$ of breadcrumbs$; let i=index"
-        [ngClass]="{'active': breadcrumbActive(i)}">
-        <span class="material-icons">{{(breadcrumb$ | async)?.icon}}</span>
-        <span>{{(breadcrumb$ | async)?.name}}</span>
-        <span *ngIf="showArrowNext(i)">></span>
+        *ngFor="let breadcrumb of (breadcrumbs$ | async); let i=index"
+        [ngClass]="{'active': breadcrumb.isActive}">
+
+        <a [routerLink]="breadcrumb.url">
+          <span class="material-icons">{{ breadcrumb?.icon }}</span>
+          <span class="name">{{ breadcrumb?.name }}</span>
+        </a>
+        <span *ngIf="breadcrumb?.hasNext">></span>
       </div>
     </div>
   `
 })
 export class BreadcrumbComponent implements OnInit {
-  public breadcrumbs$: Observable<IBreadcrumb>[] = [of(Breadcrumb.NoBreadcrumb())];
+  public title$: Observable<string> = of("");
+  public breadcrumbs$: Observable<IBreadcrumbItem[]> = of();
 
   constructor(
     private readonly router: Router,
@@ -29,37 +33,24 @@ export class BreadcrumbComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.startBreadcrumbs();
+    const breadcrumbs$ = this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd),
+      map((_) => {
+        const child = this.activatedRoute.root.firstChild?.snapshot;
+        const breadcrumbData = BreadcrumbData.build(child as IBreadcrumbChildren, { url: '' });
+        return BreadcrumbBuilder.build(breadcrumbData);
+      }));
 
-    this.router.events.pipe(
-      filter(event => event instanceof NavigationEnd)
-    ).subscribe(() => {
-      this.startBreadcrumbs();
-    });
+    this.breadcrumbs$ = breadcrumbs$;
+
+    this.title$ = this.getTitle();
   }
 
-  public showArrowNext(currentIndex: number): boolean {
-    return this.breadcrumbs$.length > 1 && currentIndex < (this.breadcrumbs$.length - 1);
-  }
+  private getTitle(): Observable<string> {
+    if (!this.breadcrumbs$) {
+      return of("");
+    }
 
-  public breadcrumbActive(currentIndex: number): boolean {
-    return currentIndex === (this.breadcrumbs$.length - 1);
-  }
-
-  private startBreadcrumbs() {
-    this.breadcrumbs$ = [];
-
-    this.breadcrumbs$[0] = this.activatedRoute.data.pipe(
-      map(data => new Breadcrumb(
-        data["breadcrumb"]?.icon,
-        data["breadcrumb"]?.name,
-        data["breadcrumb"]?.titlePage)));
-
-    this.activatedRoute.children.map(children =>
-      this.breadcrumbs$.push(
-        children.data.pipe(map(data => new Breadcrumb(
-          data["breadcrumb"]?.icon,
-          data["breadcrumb"]?.name,
-          data["breadcrumb"]?.titlePage)))));
+    return this.breadcrumbs$.pipe(map(breadcrumbs => breadcrumbs[breadcrumbs.length - 1]?.title));
   }
 }

@@ -7,6 +7,8 @@ import { Component } from "@angular/core";
 
     <main>
       <div class="content">
+        <hands-on-breadcrumb></hands-on-breadcrumb>
+
         <router-outlet></router-outlet>
       </div>
     </main>

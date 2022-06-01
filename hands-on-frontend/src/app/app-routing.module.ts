@@ -1,19 +1,22 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
-import { HomePage } from "../@pages/Home/Home.page";
 
 const routes: Routes = [
   {
     path: "",
-    component: HomePage,
     data: {
       breadcrumb: {
         icon: "home",
         name: "Home",
-        titlePage: "Home Page"
+        title: "Home Page"
       }
     },
     children: [
+      {
+        path: "home",
+        loadChildren: () => import("../@pages/Home/Home.module")
+          .then(module => module.HomeModule),
+      },
       {
         path: "posts",
         loadChildren: () => import("../@pages/Posts/Posts.module")
@@ -21,12 +24,17 @@ const routes: Routes = [
         data: {
           breadcrumb: {
             icon: "post_add",
-            name: "Posts",
-            titlePage: "Listagem de Posts"
+            name: "Publicações",
+            title: "Listagem de Publicações"
           }
         },
       }
-    ]
+    ],
+  },
+  {
+    path: "",
+    redirectTo: "home",
+    pathMatch: "full",
   }
 ];
 

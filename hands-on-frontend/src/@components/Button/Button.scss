@@ -1,0 +1,19 @@
+@import "../../scss/variables";
+
+.btn {
+  cursor: pointer;
+  background-color: $secondary-color;
+  border: 1px solid $primary-color;
+  padding: 5px 15px;
+  border-radius: 50px;
+  filter: drop-shadow(0px 2px 1px $hover-color);
+
+  &:hover {
+    filter: drop-shadow(0px 2px 4px $hover-color);
+    transition: all 500ms;
+  }
+
+  &:active {
+    filter: drop-shadow(0px 0px 0px $hover-color);
+  }
+}

@@ -1,12 +1,25 @@
 import { NgModule } from "@angular/core";
+import { Route, RouterModule } from "@angular/router";
 import { BreacrumbModule } from "src/@components/Breadcrumb/Breadcrumb.module";
 import { HomePage } from "./Home.page";
 
+const routes: Route[] = [
+  {
+    path: "",
+    component: HomePage
+  }
+];
+
 @NgModule({
-  declarations: [HomePage],
-  exports: [HomePage],
+  declarations: [
+    HomePage
+  ],
+  exports: [
+    RouterModule
+  ],
   imports: [
-    BreacrumbModule
+    BreacrumbModule,
+    RouterModule.forChild(routes)
   ]
 })
 export class HomeModule { }

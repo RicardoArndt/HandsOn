@@ -18,7 +18,7 @@ import { Component } from "@angular/core";
         <li>
           <a routerLink="/posts" routerLinkActive="active">
             <span class="material-icons">post_add</span>
-            Posts
+            Publicações
           </a>
         </li>
 

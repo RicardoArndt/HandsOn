@@ -2,10 +2,9 @@ import { Component } from "@angular/core";
 
 @Component({
   template: `
-    <h1>Home</h1>
-  `,
-  styleUrls: ["./Home.scss"]
+    <div>New Post</div>
+  `
 })
-export class HomePage {
+export class NewPostPage {
 
 }

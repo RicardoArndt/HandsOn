@@ -4,26 +4,42 @@ div {
   display: flex;
   align-items: center;
   flex-direction: row;
-  gap: 3px;
+  gap: 5px;
   cursor: default;
 
   .breadcrumb {
     display: flex;
     flex-direction: row;
-    margin-top: 10px;
-
-    &.active {
-      span {
-        color: $hover-color;
-      }
-    }
+    align-items: center;
+    padding-top: 10px;
 
     span {
       font-size: 12px;
       color: $gray;
+    }
 
-      &.material-icons {
-        font-size: 16px;
+    &.active {
+      a {
+        span {
+          color: $hover-color;
+        }
+      }
+    }
+
+    a {
+      text-decoration: none;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 3px;
+
+      span {
+        font-size: 12px;
+        color: $gray;
+
+        &.material-icons {
+          font-size: 16px;
+        }
       }
     }
   }
