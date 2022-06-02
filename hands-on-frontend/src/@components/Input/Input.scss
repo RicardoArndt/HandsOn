@@ -1,19 +1,22 @@
 @import "../../scss/variables";
 
-.btn {
-  cursor: pointer;
-  background-color: $secondary-color;
+.input {
   border: 1px solid $primary-color;
-  padding: 5px 15px;
   border-radius: 50px;
-  filter: drop-shadow(0px 2px 1px $hover-color);
+  padding: 5px 15px;
+  display: flex;
+  justify-content: center;
+  background-color: transparent;
+  outline: none;
+  transition: all 500ms;
 
-  &:hover {
-    filter: drop-shadow(0px 2px 4px $hover-color);
-    transition: all 500ms;
+  &:focus-within {
+    border: 1px solid $hover-color;
   }
 
-  &:active {
-    filter: drop-shadow(0px 0px 0px $hover-color);
+  input {
+    background-color: transparent;
+    border: none;
+    outline: none;
   }
 }

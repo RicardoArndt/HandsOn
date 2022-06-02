@@ -4,7 +4,12 @@ import { Component, EventEmitter, Input, Output } from "@angular/core";
   selector: "hands-on-input",
   styleUrls: ["./Input.scss"],
   template: `
-    <input class="input" />
+    <div class="input">
+      <input />
+      <span class="material-icons">
+        search
+        </span>
+    </div>
   `
 })
 export class InputComponent {
