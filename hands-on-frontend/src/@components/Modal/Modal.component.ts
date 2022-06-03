@@ -1,5 +1,5 @@
-import { Component, Input, Type } from "@angular/core";
-import { NoComponent } from "./directives/modal-content.directive";
+import { Component, Input, Type, ViewChild } from "@angular/core";
+import { ModalContentDirective, NoComponent } from "./directives/modal-content.directive";
 
 @Component({
   selector: "hands-on-modal",
@@ -11,5 +11,9 @@ import { NoComponent } from "./directives/modal-content.directive";
   styleUrls: ["./Modal.scss"]
 })
 export class ModalComponent {
-  @Input() public content: Type<Component> = NoComponent;
+  @Input()
+  public content: Type<Component> = NoComponent;
+
+  @ViewChild(ModalContentDirective, {static: true})
+  public modalDirective!: ModalContentDirective;
 }

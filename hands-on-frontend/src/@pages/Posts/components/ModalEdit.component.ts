@@ -1,11 +1,11 @@
-import { Component } from "@angular/core";
+import { Component, Input } from "@angular/core";
 
 @Component({
   selector: "hands-on-modal-edit",
   template: `
-    <h1>Olá</h1>
+    <h1>{{ id }}</h1>
   `
 })
 export class ModalEditComponent {
-
+  @Input() public id: string = "";
 }

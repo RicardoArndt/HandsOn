@@ -96,7 +96,8 @@ export class PostsPage {
     this.router.navigate(["posts", "newpost"]);
   }
 
-  public onClickEdit(id: string) {
-    this.modalService.openModal(this.viewContainer, ModalEditComponent);
+  public async onClickEdit(id: string) {
+    const modalRef = await this.modalService.openModal(this.viewContainer, ModalEditComponent);
+    modalRef.id = id;
   }
 }

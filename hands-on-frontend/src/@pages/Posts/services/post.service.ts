@@ -32,7 +32,7 @@ export class PostService implements IPostService {
         tags: ["Frontend", "Angular", "Design patterns"]
       },
       {
-        id: "guid",
+        id: "guid 2",
         code: 205,
         title: "Implementando o padrão factory",
         createdAt: new Date(),

@@ -11,6 +11,7 @@ export class NoComponent { }
 })
 export class ModalContentDirective implements OnChanges {
   @Input() public modalContent: Type<Component> = NoComponent;
+  public modalRef: any;
 
   constructor(
     private readonly viewContainer: ViewContainerRef,
@@ -18,6 +19,6 @@ export class ModalContentDirective implements OnChanges {
   ) { }
 
   ngOnChanges(): void {
-    this.viewContainer.createComponent(this.modalContent);
+    this.modalRef = this.viewContainer.createComponent(this.modalContent).instance;
   }
 }
