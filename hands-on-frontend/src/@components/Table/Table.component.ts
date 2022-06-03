@@ -1,5 +1,5 @@
 import { Component, Input } from "@angular/core";
-import { ITableBodyElement, ITableHeadElement } from "./Table";
+import { ITableBodyElement, ITableColumn, ITableHeadElement, TableValue } from "./Table";
 
 @Component({
   selector: "hands-on-table",
@@ -17,8 +17,8 @@ import { ITableBodyElement, ITableHeadElement } from "./Table";
 
         <tbody>
           <tr *ngFor="let row of bodyElement.rows">
-            <td *ngFor="let column of row.columns" [title]="column.value">
-              {{ column.value }}
+            <td *ngFor="let column of row.columns" [title]="title(column)">
+              <ng-template *tableColumn="column.column"></ng-template>
             </td>
           </tr>
         </tbody>
@@ -29,4 +29,14 @@ import { ITableBodyElement, ITableHeadElement } from "./Table";
 export class TableComponent {
   @Input() public headElements: ITableHeadElement[] = [];
   @Input() public bodyElement: ITableBodyElement = { rows: [] };
+
+  constructor() { }
+
+  public title(column: ITableColumn): string {
+    if (column.column instanceof TableValue) {
+      return column.column.value.toString();
+    }
+
+    return "";
+  }
 }

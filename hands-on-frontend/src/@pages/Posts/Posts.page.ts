@@ -1,7 +1,7 @@
 import { Component, Inject } from "@angular/core";
 import { Router } from "@angular/router";
 import { map, Observable } from "rxjs";
-import { ITableBodyElement, ITableHeadElement } from "../../@components/Table/Table";
+import { ITableBodyElement, ITableHeadElement, TableColumnType, TableValue } from "../../@components/Table/Table";
 import { IPostService, POST_SERVICE_TOKEN } from "./services/post.service";
 
 @Component({
@@ -11,7 +11,7 @@ import { IPostService, POST_SERVICE_TOKEN } from "./services/post.service";
         <hands-on-input></hands-on-input>
 
         <hands-on-button
-          name="Novo"
+          name="Adicionar"
           (onClick)="goToNewPost()">
         </hands-on-button>
       </div>
@@ -57,25 +57,25 @@ export class PostsPage {
         rows: posts.map(post => ({
           columns: [
             {
-              value: post.code
+              column: new TableValue(post.code)
             },
             {
-              value: post.title
+              column: new TableValue(post.title)
             },
             {
-              value: post.createdAt.toLocaleDateString("pt-BR")
+              column: new TableValue(post.createdAt.toLocaleDateString("pt-BR"))
             },
             {
-              value: post.createdBy
+              column: new TableValue(post.createdBy)
             },
             {
-              value: post.priority
+              column: new TableValue(post.priority)
             },
             {
-              value: post.tags.join(", ")
+              column: new TableValue(post.tags.join(", "))
             },
             {
-              value: "Action"
+              column: new TableValue("", TableColumnType.Button, "edit_note")
             }
           ]
         }))
