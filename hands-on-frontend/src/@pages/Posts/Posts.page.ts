@@ -3,7 +3,7 @@ import { Router } from "@angular/router";
 import { map, Observable } from "rxjs";
 import { ModalService } from "src/@components/Modal/services/modal.service";
 import { ITableBodyElement, ITableHeadElement, TableColumnType, TableValue } from "../../@components/Table/Table";
-import { ModalEditComponent } from "./components/ModalEdit.component";
+import { PostEditModalComponent } from "./components/PostEditModal.component";
 import { IPostService, POST_SERVICE_TOKEN } from "./services/post.service";
 
 @Component({
@@ -97,7 +97,7 @@ export class PostsPage {
   }
 
   public async onClickEdit(id: string) {
-    const modalRef = await this.modalService.openModal(this.viewContainer, ModalEditComponent);
+    const modalRef = await this.modalService.openModal(this.viewContainer, PostEditModalComponent);
     modalRef.id = id;
   }
 }

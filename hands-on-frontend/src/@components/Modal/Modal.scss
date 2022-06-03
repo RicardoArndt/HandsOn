@@ -1,6 +1,28 @@
+@import "../../scss/variables";
+
 .modal {
   position: absolute;
-  background-color: red;
-  width: 50%;
-  height: 500px;
+  background-color: rgba($secondary-color, 0.9);
+  border: 3px solid lighten($secondary-color, 15%);
+  border-top: 25px solid lighten($secondary-color, 15%);
+  border-radius: 15px;
+  padding: 10px 20px;
+  width: 75%;
+  height: 80%;
+  top: calc(20% - 100px);
+  left: calc(25% - 200px);
+
+  .cancel {
+    cursor: pointer;
+    position: absolute;
+    top: -19px;
+    font-size: 17px;
+    color: $danger;
+    right: 3px;
+  }
+
+  .modal-content {
+    height: 100%;
+    overflow-y: scroll;
+  }
 }

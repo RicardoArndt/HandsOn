@@ -5,16 +5,26 @@ import { ModalComponent } from "../Modal.component";
   providedIn: "root"
 })
 export class ModalService {
+  private viewContainer!: ViewContainerRef;
+
   public openModal<T extends Type<any>>(viewContainer: ViewContainerRef, content: T): Promise<any> {
+    this.viewContainer = viewContainer;
+
     const instance = viewContainer.createComponent(ModalComponent).instance;
     instance.content = content;
 
     return new Promise(resolve => {
       setTimeout(() => {
-        console.log(instance.modalDirective.modalRef);
+        setTimeout(() => {
+          instance.modalDirective.modalRef.initialize();
+        }, 100);
 
         resolve(instance.modalDirective.modalRef);
       }, 100);
     });
+  }
+
+  public closeModal() {
+    this.viewContainer?.clear();
   }
 }
