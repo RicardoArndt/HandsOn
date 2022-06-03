@@ -16,9 +16,11 @@ export interface ITableColumn {
 
 export class TableValue {
   constructor(
+    public readonly id: string = "",
     public readonly value: string | number = "",
     public readonly type: TableColumnType | null = null,
-    public readonly icon: string = ""
+    public readonly icon: string = "",
+    public readonly event: (id: string) => void = (_) => {}
   ) { }
 }
 

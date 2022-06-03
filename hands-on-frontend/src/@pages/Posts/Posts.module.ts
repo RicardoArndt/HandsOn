@@ -7,6 +7,7 @@ import { PostsPage } from "./Posts.page";
 import { TableModule } from "../../@components/Table/Table.module";
 import { CommonModule } from "@angular/common";
 import { PostService, POST_SERVICE_TOKEN } from "./services/post.service";
+import { ModalModule } from "../../@components/Modal/Modal.module";
 
 const routes: Route[] = [
   {
@@ -41,7 +42,8 @@ const routes: Route[] = [
     RouterModule.forChild(routes),
     ButtonModule,
     InputModule,
-    TableModule
+    TableModule,
+    ModalModule
   ],
   exports: [
     RouterModule

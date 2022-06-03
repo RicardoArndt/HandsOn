@@ -12,15 +12,15 @@ export interface ITableColumnFactory {
 @Injectable()
 export class TableColumnFactory implements ITableColumnFactory {
   constructor(
-    private readonly viewContent: ViewContainerRef
+    private readonly viewContainer: ViewContainerRef
   ) { }
 
   createComponent(type: TableColumnType): UnionType {
     switch (type) {
       case TableColumnType.Button:
-        return this.viewContent.createComponent(ButtonColumnComponent).instance;
+        return this.viewContainer.createComponent(ButtonColumnComponent).instance;
       default:
-        return this.viewContent.createComponent(DefaultColumnComponent).instance;
+        return this.viewContainer.createComponent(DefaultColumnComponent).instance;
     }
   }
 }

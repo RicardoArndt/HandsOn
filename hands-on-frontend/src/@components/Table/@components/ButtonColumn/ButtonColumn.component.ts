@@ -7,7 +7,8 @@ import { TableValue } from "../../Table";
     <hands-on-button
       class="column-btn"
       [title]="column.value"
-      [icon]="column.icon"></hands-on-button>
+      [icon]="column.icon"
+      (onClick)="column.event(column.id)"></hands-on-button>
   `,
   styles: [
     `

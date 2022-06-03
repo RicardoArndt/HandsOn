@@ -1,7 +1,9 @@
-import { Component, Inject } from "@angular/core";
+import { Component, Inject, ViewContainerRef } from "@angular/core";
 import { Router } from "@angular/router";
 import { map, Observable } from "rxjs";
+import { ModalService } from "src/@components/Modal/services/modal.service";
 import { ITableBodyElement, ITableHeadElement, TableColumnType, TableValue } from "../../@components/Table/Table";
+import { ModalEditComponent } from "./components/ModalEdit.component";
 import { IPostService, POST_SERVICE_TOKEN } from "./services/post.service";
 
 @Component({
@@ -57,25 +59,25 @@ export class PostsPage {
         rows: posts.map(post => ({
           columns: [
             {
-              column: new TableValue(post.code)
+              column: new TableValue(post.id, post.code)
             },
             {
-              column: new TableValue(post.title)
+              column: new TableValue(post.id, post.title)
             },
             {
-              column: new TableValue(post.createdAt.toLocaleDateString("pt-BR"))
+              column: new TableValue(post.id, post.createdAt.toLocaleDateString("pt-BR"))
             },
             {
-              column: new TableValue(post.createdBy)
+              column: new TableValue(post.id, post.createdBy)
             },
             {
-              column: new TableValue(post.priority)
+              column: new TableValue(post.id, post.priority)
             },
             {
-              column: new TableValue(post.tags.join(", "))
+              column: new TableValue(post.id, post.tags.join(", "))
             },
             {
-              column: new TableValue("", TableColumnType.Button, "edit_note")
+              column: new TableValue(post.id, "", TableColumnType.Button, "edit_note", this.onClickEdit.bind(this))
             }
           ]
         }))
@@ -84,10 +86,17 @@ export class PostsPage {
 
   constructor(
     private readonly router: Router,
-    @Inject(POST_SERVICE_TOKEN) private readonly postService: IPostService
+    private readonly modalService: ModalService,
+    @Inject(POST_SERVICE_TOKEN)
+    private readonly postService: IPostService,
+    private readonly viewContainer: ViewContainerRef
   ) { }
 
   public goToNewPost(): void {
     this.router.navigate(["posts", "newpost"]);
+  }
+
+  public onClickEdit(id: string) {
+    this.modalService.openModal(this.viewContainer, ModalEditComponent);
   }
 }
