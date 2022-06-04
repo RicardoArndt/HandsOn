@@ -11,8 +11,18 @@ export interface IPostList {
   tags: string[];
 }
 
+export interface IPost {
+  id: string;
+  code: number;
+  title: string;
+  priority: number;
+  tags: string[];
+  description: string;
+}
+
 export interface IPostService {
   getList(): Observable<IPostList[]>;
+  getPostById(id: string): Observable<IPost>;
 }
 
 export const POST_SERVICE_TOKEN =
@@ -41,5 +51,16 @@ export class PostService implements IPostService {
         tags: ["Backend", "C#", "Design patterns"]
       }
     ]);
+  }
+
+  public getPostById(id: string): Observable<IPost> {
+    return of({
+      id: "guid 2",
+      code: 205,
+      title: "Implementando o padrão factory",
+      priority: 1,
+      tags: ["Backend", "C#", "Design patterns"],
+      description: "description"
+    });
   }
 }

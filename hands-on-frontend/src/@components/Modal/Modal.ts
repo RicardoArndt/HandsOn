@@ -1,3 +1,3 @@
 export interface IModalInitialize {
-  initialize(): void;
+  initialize(): Promise<void>
 }
