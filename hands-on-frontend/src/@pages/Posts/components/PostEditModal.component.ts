@@ -8,7 +8,12 @@ import { IModalInitialize } from "../../../@components/Modal/Modal";
       You are editing the Command Pattern post.
     </p>
 
-    <textarea [value]="value" #textArea></textarea>
+    <div class="container">
+      <div class="prefix-lines">
+        <span *ngFor="let prefix of prefixes">{{ prefix }}</span>
+      </div>
+      <textarea [value]="value" #textArea></textarea>
+    </div>
   `,
   styleUrls: ["./PostEditModal.scss"]
 })
@@ -19,11 +24,13 @@ export class PostEditModalComponent implements IModalInitialize {
   @ViewChild("textArea")
   public textArea!: ElementRef;
 
+  public prefixes: string[] = [];
+
   public value: string = "";
 
   initialize(): void {
     setTimeout(() => {
-      this.value += "cmd -> ";
+      this.prefixes.push("cmd ->");
     }, 3800);
 
     setTimeout(() => {
