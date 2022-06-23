@@ -6,15 +6,26 @@
   font-family: monospace;
   overflow: hidden;
   white-space: nowrap;
-  letter-spacing: .15em;
-  animation:
-    typing 4s steps(35, end);
+  letter-spacing: 0.15em;
+  animation: typing 4s steps(35, end);
+}
+
+.container {
+  display: flex;
+
+  span {
+    display: block;
+    width: 105%;
+    margin-right: 10px;
+  }
 }
 
 textarea {
   background-color: transparent;
   width: 99.8%;
   height: 90%;
+  line-height: 20px;
+  min-height: 400px;
   border: none;
   outline: none;
   padding: 0;
@@ -27,6 +38,10 @@ textarea,
 }
 
 @keyframes typing {
-  from { width: 0; }
-  to { width: 50%; }
+  from {
+    width: 0;
+  }
+  to {
+    width: 50%;
+  }
 }

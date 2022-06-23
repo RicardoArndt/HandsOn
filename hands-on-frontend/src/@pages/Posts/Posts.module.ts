@@ -8,6 +8,9 @@ import { TableModule } from "../../@components/Table/Table.module";
 import { CommonModule } from "@angular/common";
 import { PostService, POST_SERVICE_TOKEN } from "./services/post.service";
 import { ModalModule } from "../../@components/Modal/Modal.module";
+import { PostEditModalComponent } from "./components/PostEditModal.component";
+import { CommandFactory, COMMAND_FACTORY_TOKEN } from "./models/Command";
+import { FormsModule } from "@angular/forms";
 
 const routes: Route[] = [
   {
@@ -35,12 +38,14 @@ const routes: Route[] = [
 @NgModule({
   declarations: [
     PostsPage,
-    NewPostPage
+    NewPostPage,
+    PostEditModalComponent
   ],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
     ButtonModule,
+    FormsModule,
     InputModule,
     TableModule,
     ModalModule
@@ -52,6 +57,10 @@ const routes: Route[] = [
     {
       provide: POST_SERVICE_TOKEN,
       useClass: PostService
+    },
+    {
+      provide: COMMAND_FACTORY_TOKEN,
+      useClass: CommandFactory
     }
   ]
 })

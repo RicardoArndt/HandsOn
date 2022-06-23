@@ -1,20 +1,21 @@
 import { Component, ElementRef, Inject, Input, ViewChild } from "@angular/core";
 import { firstValueFrom } from "rxjs";
 import { IModalInitialize } from "../../../@components/Modal/Modal";
+import { COMMAND_FACTORY_TOKEN, ICommandFactory } from "../models/Command";
 import { IPost, IPostService, POST_SERVICE_TOKEN } from "../services/post.service";
 
 @Component({
   selector: "hands-on-post-edit-modal",
   template: `
     <p class="typewriter">
-      You are editing the <strong>{{ post.title }}</strong> post.
+      You are editing the <strong>{{ post?.title }}</strong> post.
     </p>
 
     <div class="container">
       <div class="prefix-lines">
         <span *ngFor="let prefix of prefixes">{{ prefix }}</span>
       </div>
-      <textarea [value]="value" #textArea></textarea>
+      <textarea [(ngModel)]="value" (keyup)="onKeyUp($event)" #textArea></textarea>
     </div>
   `,
   styleUrls: ["./PostEditModal.scss"]
@@ -32,10 +33,26 @@ export class PostEditModalComponent implements IModalInitialize {
 
   constructor(
     @Inject(POST_SERVICE_TOKEN)
-    private readonly postService: IPostService
+    private readonly postService: IPostService,
+    @Inject(COMMAND_FACTORY_TOKEN)
+    private readonly commandFactory: ICommandFactory
   ) { }
 
-  async initialize(): Promise<void> {
+  public async onKeyUp(event: KeyboardEvent) {
+    const value = (event.target as HTMLInputElement).value;
+
+    if (event.key.toLowerCase() != "enter") {
+      return;
+    }
+
+    this.value = value;
+
+    const command = this.commandFactory.getCommand(this);
+
+    await command.executeAsync();
+  }
+
+  public async initialize(): Promise<void> {
     setTimeout(() => {
       this.prefixes.push("cmd ->");
     }, 3800);
