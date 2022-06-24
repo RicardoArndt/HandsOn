@@ -12,6 +12,7 @@ export interface IPostList {
 }
 
 export interface IPost {
+  [key: string]: string | number | string[];
   id: string;
   code: number;
   title: string;

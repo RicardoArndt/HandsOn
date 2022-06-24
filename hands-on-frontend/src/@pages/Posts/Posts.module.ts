@@ -9,8 +9,8 @@ import { CommonModule } from "@angular/common";
 import { PostService, POST_SERVICE_TOKEN } from "./services/post.service";
 import { ModalModule } from "../../@components/Modal/Modal.module";
 import { PostEditModalComponent } from "./components/PostEditModal.component";
-import { CommandFactory, COMMAND_FACTORY_TOKEN } from "./models/Command";
 import { FormsModule } from "@angular/forms";
+import { CommandFactory, COMMAND_FACTORY_TOKEN } from "./models/CommandFactory";
 
 const routes: Route[] = [
   {

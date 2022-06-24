@@ -1,14 +1,14 @@
 import { Component, ElementRef, Inject, Input, ViewChild } from "@angular/core";
 import { firstValueFrom } from "rxjs";
 import { IModalInitialize } from "../../../@components/Modal/Modal";
-import { COMMAND_FACTORY_TOKEN, ICommandFactory } from "../models/Command";
+import { COMMAND_FACTORY_TOKEN, ICommandFactory } from "../models/CommandFactory";
 import { IPost, IPostService, POST_SERVICE_TOKEN } from "../services/post.service";
 
 @Component({
   selector: "hands-on-post-edit-modal",
   template: `
     <p class="typewriter">
-      You are editing the <strong>{{ post?.title }}</strong> post.
+      You are editing the <strong>{{ publication?.title }}</strong> publication.
     </p>
 
     <div class="container">
@@ -29,7 +29,7 @@ export class PostEditModalComponent implements IModalInitialize {
   public prefixes: string[] = [];
 
   public value: string = "";
-  public post!: IPost;
+  public publication!: IPost;
 
   constructor(
     @Inject(POST_SERVICE_TOKEN)
@@ -61,7 +61,7 @@ export class PostEditModalComponent implements IModalInitialize {
       this.textArea.nativeElement.focus();
     }, 4000);
 
-    this.post = await this.getPost();
+    this.publication = await this.getPost();
   }
 
   private async getPost(): Promise<IPost> {
