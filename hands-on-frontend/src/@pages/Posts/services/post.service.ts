@@ -1,5 +1,6 @@
 import { Injectable, InjectionToken } from "@angular/core";
-import { Observable, of } from "rxjs";
+import { map, Observable, of } from "rxjs";
+import { ISaveService } from "../models/SaveCommand";
 
 export interface IPostList {
   id: string;
@@ -13,15 +14,15 @@ export interface IPostList {
 
 export interface IPost {
   [key: string]: string | number | string[];
-  id: string;
-  code: number;
+  _id: string;
+  _code: number;
   title: string;
   priority: number;
   tags: string[];
   description: string;
 }
 
-export interface IPostService {
+export interface IPostService extends ISaveService {
   getList(): Observable<IPostList[]>;
   getPostById(id: string): Observable<IPost>;
 }
@@ -31,6 +32,10 @@ export const POST_SERVICE_TOKEN =
 
 @Injectable()
 export class PostService implements IPostService {
+  public saveAsync(publication: IPost): Promise<void> {
+    throw new Error("Method not implemented.");
+  }
+
   public getList(): Observable<IPostList[]> {
     return of([
       {
@@ -62,6 +67,14 @@ export class PostService implements IPostService {
       priority: 1,
       tags: ["Backend", "C#", "Design patterns"],
       description: "description"
-    });
+    }).pipe(map(publication => (
+      {
+        _id: publication.id,
+        _code: publication.code,
+        description: publication.description,
+        priority: publication.priority,
+        tags: publication.tags,
+        title: publication.title
+      })));
   }
 }

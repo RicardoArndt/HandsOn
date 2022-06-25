@@ -24,7 +24,14 @@ export class Setter extends BaseConsole {
   public checkPropertyExists() {
     const property = this.getPropertyConsole();
     if (this.props.publication[property] === undefined) {
-      throw new Error(`propery ${property} does not exists`);
+      throw new Error(`property ${property} does not exists`);
+    }
+  }
+
+  public checkPropertyEditable() {
+    const property = this.getPropertyConsole();
+    if (property.startsWith("_")) {
+      throw new Error(`property ${property} does not editable`);
     }
   }
 
@@ -33,7 +40,7 @@ export class Setter extends BaseConsole {
     const value = this.getValueConsole();
     this.props.publication[property] = isNaN(+value) ? value : +value;
 
-    this.setMessageConsole(`property ${property} has been setted ${value}`);
+    this.setConsoleMessage(`property ${property} has been setted ${value}`);
   }
 
   private getPropertyConsole(): string {
@@ -59,9 +66,10 @@ export class SetterCommand implements ICommand {
       try {
         this._setter.checkConsoleValueMatch();
         this._setter.checkPropertyExists();
+        this._setter.checkPropertyEditable();
         this._setter.set();
       } catch (err: any) {
-        this._setter.setMessageConsole(err.message);
+        this._setter.setConsoleMessage(err.message);
       }
 
       resolve();

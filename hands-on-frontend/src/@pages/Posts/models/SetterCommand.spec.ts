@@ -5,9 +5,9 @@ describe("SetterCommand", () => {
     const props: ISetterProps = {
       prefixes: [],
       publication: {
-        code: 0,
+        _code: 0,
         description: "",
-        id: "",
+        _id: "",
         priority: 0,
         tags: [],
         title: ""
@@ -25,9 +25,9 @@ describe("SetterCommand", () => {
     const props: ISetterProps = {
       prefixes: [],
       publication: {
-        code: 0,
+        _code: 0,
         description: "",
-        id: "",
+        _id: "",
         priority: 0,
         tags: [],
         title: ""
@@ -46,31 +46,31 @@ describe("SetterCommand", () => {
     const props: ISetterProps = {
       prefixes: [],
       publication: {
-        code: 0,
+        _code: 0,
         description: "",
-        id: "",
+        _id: "",
         priority: 0,
         tags: [],
         title: ""
       },
-      value: "set description=abc\nset code=10\n"
+      value: "set description=abc\nset priority=10\n"
     };
-    const setter = new SetterCommand(new Setter(props, "set code=10"));
+    const setter = new SetterCommand(new Setter(props, "set priority=10"));
 
     await setter.executeAsync();
 
-    expect(props.value).toBe("set description=abc\nset code=10\nproperty code has been setted 10\n");
+    expect(props.value).toBe("set description=abc\nset priority=10\nproperty priority has been setted 10\n");
     expect(props.publication.description).toBe("");
-    expect(props.publication.code).toBe(10);
+    expect(props.publication.priority).toBe(10);
   });
 
-  it("should return propery does not exists", async () => {
+  it("should return property does not exists", async () => {
     const props: ISetterProps = {
       prefixes: [],
       publication: {
-        code: 0,
+        _code: 0,
         description: "",
-        id: "",
+        _id: "",
         priority: 0,
         tags: [],
         title: ""
@@ -81,6 +81,26 @@ describe("SetterCommand", () => {
 
     await setter.executeAsync();
 
-    expect(props.value).toBe("set command=abc\npropery command does not exists\n");
+    expect(props.value).toBe("set command=abc\nproperty command does not exists\n");
+  });
+
+  it("should return property does not editable", async () => {
+    const props: ISetterProps = {
+      prefixes: [],
+      publication: {
+        _code: 0,
+        description: "",
+        _id: "",
+        priority: 0,
+        tags: [],
+        title: ""
+      },
+      value: "set _id=abc\n"
+    };
+    const setter = new SetterCommand(new Setter(props, props.value));
+
+    await setter.executeAsync();
+
+    expect(props.value).toBe("set _id=abc\nproperty _id does not editable\n");
   });
 });

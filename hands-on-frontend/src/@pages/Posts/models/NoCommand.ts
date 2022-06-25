@@ -12,7 +12,7 @@ export class NotFound extends BaseConsole {
   ) { super(props); }
 
   public log(): void {
-    this.setMessageConsole("command not found");
+    this.setConsoleMessage("command not found");
   }
 }
 
