@@ -1,0 +1,7 @@
+export const CREATE_CHANGE_LOG_TABLE = `CREATE TABLE IF NOT EXISTS changelog
+(
+  id TEXT NOT NULL,
+  name TEXT NOT NULL,
+  PRIMARY KEY(id)
+)
+`;
