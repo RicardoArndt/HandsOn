@@ -83,6 +83,18 @@
       ],
       "@routes/*": [
         "src/routes/*"
+      ],
+      "@repositories/*": [
+        "src/repositories/*"
+      ],
+      "@infra/*": [
+        "src/infra/*"
+      ],
+      "@entities/*": [
+        "src/entities/*"
+      ],
+      "@sql/*": [
+        "src/sql/*"
       ]
     },
     "useUnknownInCatchVariables": false

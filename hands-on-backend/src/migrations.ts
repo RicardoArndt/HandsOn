@@ -1,13 +1,13 @@
 import dotenv from "dotenv";
 import { Client } from "pg";
 import { v4 as uuidv4 } from "uuid";
-import { CREATE_CHANGE_LOG_TABLE } from "./migrations/changelog";
+import { CREATE_CHANGE_LOG_TABLE } from "./sql/migrations/changelog";
 import {
   CREATE_PUBLICATION_TABLE,
   CREATE_PUBLICATION_TAG_TABLE,
   CREATE_TAG_TABLE
-} from "./migrations/publication"
-import { GET_BY_NAME_QUERY, INSERT_QUERY } from "./queries/changelog";
+} from "./sql/migrations/publication"
+import { GET_BY_NAME_QUERY, INSERT_QUERY } from "./sql/queries/changelog";
 
 dotenv.config();
 const db = new Client({ database: "handson" });
@@ -21,7 +21,10 @@ const migrateAll = (funcs: Promise<void>[]): void => {
         .catch((err) => {
           console.error("Error:", err.message);
         })
-        .finally(() => process.exit());
+        .finally(() => {
+          db.end();
+          process.exit();
+        });
   });
 }
 
