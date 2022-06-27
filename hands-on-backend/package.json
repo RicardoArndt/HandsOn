@@ -29,7 +29,9 @@
     "@routes": "dist/routes",
     "@repositories": "dist/repositories",
     "@infra": "dist/infra",
-    "@sql": "dist/sql"
+    "@sql": "dist/sql",
+    "@injector": "dist/injector",
+    "@daos": "dist/daos"
   },
   "eslintConfig": {
     "parser": "@typescript-eslint/parser",

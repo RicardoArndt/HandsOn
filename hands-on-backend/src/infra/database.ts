@@ -1,33 +1,32 @@
 import dotenv from "dotenv";
-import { Client, QueryResult } from "pg";
+import { Pool, QueryResult } from "pg";
 
 export class Connection {
   private _db;
 
   public constructor() {
     dotenv.config();
-    this._db = new Client({ database: "handson" });
-  }
-
-  public open(): void {
-    this._db.connect();
-  }
-
-  public close(): void {
-    this._db.end();
+    this._db = new Pool({ database: "handson" });
   }
 
   public get<TResult>(
-    query: string
+    query: string,
+    params: any[]
   ): Promise<QueryResult<TResult>> {
     return new Promise((resolve, reject) => {
-      this._db.query(query, (err, result) => {
-        if (err) {
-          reject(err);
-          throw err;
-        }
+      this._db.connect((err, client, done) => {
+        if (err) throw err;
 
-        resolve(result);
+        client.query(query, params, (err, result) => {
+          done();
+
+          if (err) {
+            reject(err);
+            throw err;
+          }
+
+          resolve(result);
+        });
       });
     });
   }
@@ -37,13 +36,19 @@ export class Connection {
     params: any[]
   ): Promise<void> {
     return new Promise((resolve, reject) => {
-      return this._db.query(query, params, (err) => {
-        if (err) {
-          reject(err);
-          throw err;
-        }
+      this._db.connect((err, client, done) => {
+        if (err) throw err;
 
-        resolve();
+        client.query(query, params, (err) => {
+          done();
+
+          if (err) {
+            reject(err);
+            throw err;
+          }
+
+          resolve();
+        });
       });
     });
   }

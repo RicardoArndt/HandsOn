@@ -1,23 +1,18 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 import { INSERT_QUERY } from "@sql/queries/publication";
 import { INSERT_QUERY as INSERT_QUERY_PB_TAG } from "@sql/queries/publication_tag";
-import { INSERT_QUERY as INSERT_QUERY_TAG } from "@sql/queries/tag";
 import { Connection } from "@infra/database";
-import { v4 as uuidv4 } from "uuid";
-import { PublicationModel } from "@models/publication";
+import { Publication, PublicationTag } from "@entities/publication";
 
 export class PublicationRepository {
   constructor(
     private readonly connection: Connection
   ) { }
 
-  public async insert(publication: PublicationModel): Promise<string> {
-    this.connection.open();
-
-    const id = uuidv4();
-
-    const entity = publication.createEntity();
-
+  public async insert(entity: {
+    publication: Publication,
+    publicationTags: PublicationTag[]
+  }): Promise<string> {
     await this.connection.execute(INSERT_QUERY, [
       entity.publication.publication_id,
       entity.publication.code,
@@ -28,14 +23,7 @@ export class PublicationRepository {
       entity.publication.priority
     ]);
 
-    for (const entityTag of entity.tags) {
-      const { tag, publicationTag } = entityTag;
-
-      await this.connection.execute(INSERT_QUERY_TAG, [
-        tag.tag_id,
-        tag.name
-      ]);
-
+    for (const publicationTag of entity.publicationTags) {
       await this.connection.execute(INSERT_QUERY_PB_TAG, [
         publicationTag.publication_tag_id,
         publicationTag.tag_id,
@@ -43,8 +31,6 @@ export class PublicationRepository {
       ]);
     }
 
-    this.connection.close();
-
-    return id;
+    return entity.publication.publication_id;
   }
 }
