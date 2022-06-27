@@ -2,14 +2,46 @@
 import { Publication, PublicationTag, Tag } from "@entities/publication";
 import { v4 as uuidv4 } from "uuid";
 
+export interface IPublicationRequest {
+  code: number;
+  title: string,
+  description: string,
+  priority: number,
+  tags: ITagRequest[]
+}
+
+export interface ITagRequest {
+  name: string;
+}
+
 export class PublicationModel {
-  constructor(
-    private code: number,
+  private code = 0;
+
+  private constructor(
     private title: string,
     private description: string,
     private priority: number,
     private tags: TagModel[]
   ) { }
+
+  public static fromRequest(request: IPublicationRequest): PublicationModel {
+    if (
+      !request.title
+      || !request.description
+      || !request.priority
+      || !request.tags.length
+    ) {
+      throw new Error("Invalid body object");
+    }
+
+    return new PublicationModel(
+      request.title,
+      request.description,
+      request.priority,
+      request.tags.map(tag =>
+        TagModel.fromJson(tag.name))
+    );
+  }
 
   public createEntity(): {
     publication: Publication,
@@ -40,6 +72,14 @@ export class TagModel {
   constructor(
     private name: string
   ) { }
+
+  public static fromJson(name: string): TagModel {
+    if (!name) {
+      throw new Error("Invalid Tag");
+    }
+
+    return new TagModel(name);
+  }
 
   public createEntityForPublication(publicationId: string): {
     tag: Tag,
