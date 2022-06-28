@@ -17,3 +17,11 @@ export const INSERT_QUERY = `INSERT INTO publications
   $6,
   $7
 );`;
+
+export const SELECT_BY_ID = `SELECT *
+FROM publications AS p
+JOIN publications_tags AS pt ON pt.publication_id = p.publication_id
+LEFT JOIN tags AS t ON t.tag_id = pt.tag_id
+WHERE p.publication_id = $1`
+
+export const SELECT_TAGS_BY_ID = `SELECT * FROM publications_tags WHERE publication_id = $1`

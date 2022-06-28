@@ -1,3 +1,4 @@
+import { PublicationDao } from "@daos/publication.dao";
 import { TagDao } from "@daos/tag.dao";
 import { Connection } from "@infra/database";
 import { PublicationRepository } from "@repositories/publication.repository";
@@ -10,8 +11,14 @@ function getConnection(): Connection {
 
 export function getPublicationService(): PublicationService {
   const connection = getConnection();
-  const repository = new PublicationRepository(connection);
+  const publicationRepository = new PublicationRepository(connection);
+  const publicationDao = new PublicationDao(connection);
   const tagRepository = new TagRepository(connection);
   const tagDao = new TagDao(connection);
-  return new PublicationService(repository, tagRepository, tagDao);
+  return new PublicationService(
+    publicationRepository,
+    publicationDao,
+    tagRepository,
+    tagDao
+  );
 }

@@ -65,6 +65,6 @@ export class PostEditModalComponent implements IModalInitialize {
   }
 
   private async getPost(): Promise<IPost> {
-    return await firstValueFrom(this.postService.getPostById(this.id));
+    return await this.postService.getPostById(this.id);
   }
 }

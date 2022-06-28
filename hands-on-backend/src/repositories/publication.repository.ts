@@ -33,4 +33,23 @@ export class PublicationRepository {
 
     return entity.publication.publication_id;
   }
+
+  public async update(entity: {
+    publication: Publication,
+    publicationTags: PublicationTag[]
+  }): Promise<void> {
+    await this.connection.execute(INSERT_QUERY, [
+      entity.publication.title,
+      entity.publication.description,
+      entity.publication.priority
+    ]);
+
+    for (const publicationTag of entity.publicationTags) {
+      await this.connection.execute(INSERT_QUERY_PB_TAG, [
+        publicationTag.publication_tag_id,
+        publicationTag.tag_id,
+        publicationTag.publication_id
+      ]);
+    }
+  }
 }

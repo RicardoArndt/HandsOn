@@ -1,12 +1,24 @@
 import { Injectable, InjectionToken } from "@angular/core";
-import { map, Observable, of } from "rxjs";
+import { firstValueFrom, map, Observable } from "rxjs";
 import { ISaveService } from "../models/SaveCommand";
+import { HttpClient } from "@angular/common/http"
+import { environment } from "src/environments/environment";
 
 export interface IPostList {
   id: string;
   code: number;
   title: string;
   createdAt: Date;
+  createdBy: string;
+  priority: number;
+  tags: string[];
+}
+
+export interface IPostListResponse {
+  id: string;
+  code: number;
+  title: string;
+  createdAt: string;
   createdBy: string;
   priority: number;
   tags: string[];
@@ -22,9 +34,29 @@ export interface IPost {
   description: string;
 }
 
+export interface IPostByIdResponse {
+  id: string;
+  code: number;
+  title: string;
+  priority: number;
+  tags: string[];
+  description: string;
+}
+
+export interface IPostCreateRequest {
+  title: string,
+  description: string,
+  priority: number,
+  tags: ITagCreateRequest[]
+}
+
+export interface ITagCreateRequest {
+  name: string;
+}
+
 export interface IPostService extends ISaveService {
   getList(): Observable<IPostList[]>;
-  getPostById(id: string): Observable<IPost>;
+  getPostById(id: string): Promise<IPost>;
 }
 
 export const POST_SERVICE_TOKEN =
@@ -32,49 +64,36 @@ export const POST_SERVICE_TOKEN =
 
 @Injectable()
 export class PostService implements IPostService {
-  public saveAsync(publication: IPost): Promise<void> {
-    throw new Error("Method not implemented.");
+  constructor(private readonly httpClient: HttpClient) { }
+
+  public createAsync(publication: IPostCreateRequest): Promise<string> {
+    return firstValueFrom(
+      this.httpClient.post<string>(`${environment.apiUrl}/publication`, publication)
+        .pipe(
+          map(p => p)));
+  }
+
+  public updateAsync(publication: IPostCreateRequest): Promise<Object> {
+    return firstValueFrom(
+      this.httpClient.put<string>(`${environment.apiUrl}/publication`, publication));
   }
 
   public getList(): Observable<IPostList[]> {
-    return of([
-      {
-        id: "guid",
-        code: 204,
-        title: "Implementando o padrão command",
-        createdAt: new Date(),
-        createdBy: "Ricardo Guilherme Arndt",
-        priority: 2,
-        tags: ["Frontend", "Angular", "Design patterns"]
-      },
-      {
-        id: "guid 2",
-        code: 205,
-        title: "Implementando o padrão factory",
-        createdAt: new Date(),
-        createdBy: "Luiz Eduardo Vollrath",
-        priority: 1,
-        tags: ["Backend", "C#", "Design patterns"]
-      }
-    ]);
+    return this.httpClient.get<IPostListResponse[]>(`${environment.apiUrl}/publication`)
+      .pipe(
+        map(res => res.map(p => ({ ...p, createdAt: new Date(p.createdAt) }))));
   }
 
-  public getPostById(id: string): Observable<IPost> {
-    return of({
-      id: "guid 2",
-      code: 205,
-      title: "Implementando o padrão factory",
-      priority: 1,
-      tags: ["Backend", "C#", "Design patterns"],
-      description: "description"
-    }).pipe(map(publication => (
-      {
-        _id: publication.id,
-        _code: publication.code,
-        description: publication.description,
-        priority: publication.priority,
-        tags: publication.tags,
-        title: publication.title
-      })));
+  public getPostById(id: string): Promise<IPost> {
+    return firstValueFrom(
+      this.httpClient.get<IPostByIdResponse>(`${environment.apiUrl}/publication/${id}`)
+        .pipe(
+          map(res => (
+            {
+              ...res,
+              _id: res.id,
+              _code: res.code
+            }
+          ))));
   }
 }

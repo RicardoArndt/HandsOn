@@ -4,7 +4,6 @@ import { Publication, PublicationTag, Tag } from "@entities/publication";
 import { v4 as uuidv4 } from "uuid";
 
 export interface IPublicationCreateRequest {
-  code: number;
   title: string,
   description: string,
   priority: number,

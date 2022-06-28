@@ -8,7 +8,7 @@ export class TagDao {
     private readonly connection: Connection
   ) { }
 
-  async getExistsByNames(names: string[]): Promise<TagCreateModel[]> {
+  public async getExistsByNames(names: string[]): Promise<TagCreateModel[]> {
     const result = await this.connection.get<Tag>(SELECT_IN_NAMES(names), names);
 
     return result.rows.map((row: Tag) => new TagCreateModel(row.name, row.tag_id));

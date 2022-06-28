@@ -14,4 +14,25 @@ publicationRouter.post('/', (req, res) => {
   });
 });
 
+// publicationRouter.put('/:id', (req, res) => {
+//   const { id } = req.params;
+//   const { body } = req;
+
+//   service.update(id, body as IPublicationCreateRequest).then(() => {
+//     res.send();
+//   });
+// });
+
+// publicationRouter.get('/', (req, res) => {
+
+// });
+
+publicationRouter.get('/:id', (req, res) => {
+  const { id } = req.params;
+
+  service.getById(id).then(publication => {
+    res.send(publication);
+  });
+});
+
 export default publicationRouter;

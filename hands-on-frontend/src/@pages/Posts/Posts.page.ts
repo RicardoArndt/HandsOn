@@ -1,7 +1,7 @@
 import { Component, Inject, ViewContainerRef } from "@angular/core";
 import { Router } from "@angular/router";
 import { map, Observable } from "rxjs";
-import { ModalService } from "src/@components/Modal/services/modal.service";
+import { ModalService } from "../../@components/Modal/services/modal.service";
 import { ITableBodyElement, ITableHeadElement, TableColumnType, TableValue } from "../../@components/Table/Table";
 import { PostEditModalComponent } from "./components/PostEditModal.component";
 import { IPostService, POST_SERVICE_TOKEN } from "./services/post.service";
