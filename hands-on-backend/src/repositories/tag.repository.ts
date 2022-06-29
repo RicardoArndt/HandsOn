@@ -8,7 +8,7 @@ export class TagRepository {
     private readonly connection: Connection
   ) { }
 
-  public async insert(entities: Tag[]): Promise<string[]> {
+  public async insert(entities: Tag[]): Promise<Tag[]> {
     for (const tag of entities) {
       await this.connection.execute(INSERT_QUERY_TAG, [
         tag.tag_id,
@@ -16,6 +16,6 @@ export class TagRepository {
       ]);
     }
 
-    return entities.map(e => e.tag_id);
+    return entities;
   }
 }

@@ -9,3 +9,5 @@ export const INSERT_QUERY = `INSERT INTO publications_tags
   $2,
   $3
 );`;
+
+export const DELETE_QUERY = `DELETE FROM publications_tags WHERE publication_id = $1;`;

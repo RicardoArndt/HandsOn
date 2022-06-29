@@ -14,18 +14,20 @@ publicationRouter.post('/', (req, res) => {
   });
 });
 
-// publicationRouter.put('/:id', (req, res) => {
-//   const { id } = req.params;
-//   const { body } = req;
+publicationRouter.put('/:id', (req, res) => {
+  const { id } = req.params;
+  const { body } = req;
 
-//   service.update(id, body as IPublicationCreateRequest).then(() => {
-//     res.send();
-//   });
-// });
+  service.update(id, body as IPublicationCreateRequest).then(() => {
+    res.send();
+  });
+});
 
-// publicationRouter.get('/', (req, res) => {
-
-// });
+publicationRouter.get('/', (req, res) => {
+  service.getAll().then(publications => {
+    res.send(publications);
+  });
+});
 
 publicationRouter.get('/:id', (req, res) => {
   const { id } = req.params;

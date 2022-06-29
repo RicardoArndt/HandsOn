@@ -1,7 +1,7 @@
 import { Publication, Tag } from "@entities/publication";
 import { Connection } from "@infra/database";
-import { PublicationById } from "@models/publication-by-id";
-import { SELECT_BY_ID } from "@sql/queries/publication";
+import { PublicationAll, PublicationById } from "@models/publication-by-id";
+import { SELECT_ALL, SELECT_BY_ID } from "@sql/queries/publication";
 
 export class PublicationDao {
   constructor(
@@ -12,5 +12,11 @@ export class PublicationDao {
     const entity = await this.connection.get<Publication & Tag>(SELECT_BY_ID, [id]);
 
     return PublicationById.fromSelect(entity.rows);
+  }
+
+  public async getAll(): Promise<PublicationAll[]> {
+    const entity = await this.connection.get<Publication & Tag>(SELECT_ALL, []);
+
+    return PublicationAll.fromSelect(entity.rows);
   }
 }

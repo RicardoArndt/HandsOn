@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
-import { INSERT_QUERY } from "@sql/queries/publication";
-import { INSERT_QUERY as INSERT_QUERY_PB_TAG } from "@sql/queries/publication_tag";
+import { INSERT_QUERY, UPDATE_QUERY } from "@sql/queries/publication";
+import { DELETE_QUERY, INSERT_QUERY as INSERT_QUERY_PB_TAG } from "@sql/queries/publication_tag";
 import { Connection } from "@infra/database";
 import { Publication, PublicationTag } from "@entities/publication";
 
@@ -38,11 +38,13 @@ export class PublicationRepository {
     publication: Publication,
     publicationTags: PublicationTag[]
   }): Promise<void> {
-    await this.connection.execute(INSERT_QUERY, [
+    await this.connection.execute(UPDATE_QUERY, [
       entity.publication.title,
       entity.publication.description,
       entity.publication.priority
     ]);
+
+    await this.connection.execute(DELETE_QUERY, [entity.publication.publication_id]);
 
     for (const publicationTag of entity.publicationTags) {
       await this.connection.execute(INSERT_QUERY_PB_TAG, [
