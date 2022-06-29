@@ -44,10 +44,18 @@ export interface IPostByIdResponse {
 }
 
 export interface IPostCreateRequest {
-  title: string,
-  description: string,
-  priority: number,
-  tags: ITagCreateRequest[]
+  title: string;
+  description: string;
+  priority: number;
+  tags: ITagCreateRequest[];
+}
+
+export interface IPostUpdateRequest {
+  id: string;
+  title: string;
+  description: string;
+  priority: number;
+  tags: ITagCreateRequest[];
 }
 
 export interface ITagCreateRequest {
@@ -68,25 +76,25 @@ export class PostService implements IPostService {
 
   public createAsync(publication: IPostCreateRequest): Promise<string> {
     return firstValueFrom(
-      this.httpClient.post<string>(`${environment.apiUrl}/publication`, publication)
+      this.httpClient.post<string>(`${environment.apiUrl}/publications`, publication)
         .pipe(
           map(p => p)));
   }
 
-  public updateAsync(publication: IPostCreateRequest): Promise<Object> {
+  public updateAsync(publication: IPostUpdateRequest): Promise<Object> {
     return firstValueFrom(
-      this.httpClient.put<string>(`${environment.apiUrl}/publication`, publication));
+      this.httpClient.put<string>(`${environment.apiUrl}/publications/${publication.id}`, publication));
   }
 
   public getList(): Observable<IPostList[]> {
-    return this.httpClient.get<IPostListResponse[]>(`${environment.apiUrl}/publication`)
+    return this.httpClient.get<IPostListResponse[]>(`${environment.apiUrl}/publications`)
       .pipe(
         map(res => res.map(p => ({ ...p, createdAt: new Date(p.createdAt) }))));
   }
 
   public getPostById(id: string): Promise<IPost> {
     return firstValueFrom(
-      this.httpClient.get<IPostByIdResponse>(`${environment.apiUrl}/publication/${id}`)
+      this.httpClient.get<IPostByIdResponse>(`${environment.apiUrl}/publications/${id}`)
         .pipe(
           map(res => (
             {

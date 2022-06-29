@@ -11,6 +11,7 @@ import { ModalModule } from "../../@components/Modal/Modal.module";
 import { PostEditModalComponent } from "./components/PostEditModal.component";
 import { FormsModule } from "@angular/forms";
 import { CommandFactory, COMMAND_FACTORY_TOKEN } from "./models/CommandFactory";
+import { HttpClientModule } from "@angular/common/http";
 
 const routes: Route[] = [
   {
@@ -48,7 +49,8 @@ const routes: Route[] = [
     FormsModule,
     InputModule,
     TableModule,
-    ModalModule
+    ModalModule,
+    HttpClientModule
   ],
   exports: [
     RouterModule

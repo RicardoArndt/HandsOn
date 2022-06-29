@@ -1,5 +1,5 @@
 import { ICommand } from "src/core/commands/Command";
-import { IPost, IPostCreateRequest } from "../services/post.service";
+import { IPost, IPostCreateRequest, IPostUpdateRequest } from "../services/post.service";
 import { BaseConsole } from "./Base";
 
 export interface ISaveProps {
@@ -10,7 +10,7 @@ export interface ISaveProps {
 
 export interface ISaveService {
   createAsync(publication: IPostCreateRequest): Promise<string>;
-  updateAsync(publication: IPostCreateRequest): Promise<Object>;
+  updateAsync(publication: IPostUpdateRequest): Promise<Object>;
 }
 
 export class Save extends BaseConsole {
@@ -21,6 +21,7 @@ export class Save extends BaseConsole {
 
   public async saveAsync(): Promise<void> {
     const {
+      _id,
       title,
       priority,
       tags,
@@ -30,6 +31,7 @@ export class Save extends BaseConsole {
     try {
       if (this.props.publication._id) {
         await this.service.updateAsync({
+          id: _id,
           description,
           priority,
           title,
@@ -48,7 +50,7 @@ export class Save extends BaseConsole {
         });
       }
 
-      this.setConsoleMessage(`saved with sucess`);
+      this.setConsoleMessage(`saved with success`);
     } catch (err: any) {
       this.setConsoleMessage(`failure ${err.message}`);
     }

@@ -39,6 +39,7 @@ export class PublicationRepository {
     publicationTags: PublicationTag[]
   }): Promise<void> {
     await this.connection.execute(UPDATE_QUERY, [
+      entity.publication.publication_id,
       entity.publication.title,
       entity.publication.description,
       entity.publication.priority

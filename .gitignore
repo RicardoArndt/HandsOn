@@ -104,3 +104,4 @@ dist
 .tern-port
 hands-on-frontend/package-lock.json
 .DS_Store
+hands-on-backend/package-lock.json

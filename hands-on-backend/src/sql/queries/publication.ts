@@ -19,7 +19,8 @@ export const INSERT_QUERY = `INSERT INTO publications
 );`;
 
 export const UPDATE_QUERY = `UPDATE publications
-SET (title, description, priority) = ($1, $2, $3);`;
+SET (title, description, priority) = ($2, $3, $4)
+WHERE publication_id = $1;`;
 
 export const SELECT_BY_ID = `SELECT *
 FROM publications AS p

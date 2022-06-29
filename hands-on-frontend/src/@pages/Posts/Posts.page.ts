@@ -1,6 +1,6 @@
-import { Component, Inject, ViewContainerRef } from "@angular/core";
+import { Component, Inject, OnInit, ViewContainerRef } from "@angular/core";
 import { Router } from "@angular/router";
-import { map, Observable } from "rxjs";
+import { catchError, firstValueFrom, map, throwError } from "rxjs";
 import { ModalService } from "../../@components/Modal/services/modal.service";
 import { ITableBodyElement, ITableHeadElement, TableColumnType, TableValue } from "../../@components/Table/Table";
 import { PostEditModalComponent } from "./components/PostEditModal.component";
@@ -21,14 +21,14 @@ import { IPostService, POST_SERVICE_TOKEN } from "./services/post.service";
       <div class="list">
         <hands-on-table
           [headElements]="tableHead"
-          [bodyElement]="(tableBody$ | async) ?? { rows: [] }">
+          [bodyElement]="tableBody">
         </hands-on-table>
       </div>
     </div>
   `,
   styleUrls: ["./Posts.scss"]
 })
-export class PostsPage {
+export class PostsPage implements OnInit {
   public tableHead: ITableHeadElement[] = [
     {
       name: "Código"
@@ -53,8 +53,31 @@ export class PostsPage {
     }
   ];
 
-  public get tableBody$(): Observable<ITableBodyElement> {
-    return this.postService.getList().pipe(
+  public tableBody: ITableBodyElement = { rows: [] };
+
+  constructor(
+    private readonly router: Router,
+    private readonly modalService: ModalService,
+    @Inject(POST_SERVICE_TOKEN)
+    private readonly postService: IPostService,
+    private readonly viewContainer: ViewContainerRef
+  ) { }
+
+  public ngOnInit(): void {
+    this.getTable().then(body => this.tableBody = body);
+  }
+
+  public goToNewPost(): void {
+    this.router.navigate(["posts", "newpost"]);
+  }
+
+  public async onClickEdit(id: string) {
+    const modalRef = await this.modalService.openModal(this.viewContainer, PostEditModalComponent);
+    modalRef.id = id;
+  }
+
+  public async getTable(): Promise<ITableBodyElement> {
+    const result = this.postService.getList().pipe(
       map(posts => ({
         rows: posts.map(post => ({
           columns: [
@@ -81,23 +104,10 @@ export class PostsPage {
             }
           ]
         }))
-      })));
-  }
+      })),
+      catchError(err => throwError(() => new Error(err)))
+    );
 
-  constructor(
-    private readonly router: Router,
-    private readonly modalService: ModalService,
-    @Inject(POST_SERVICE_TOKEN)
-    private readonly postService: IPostService,
-    private readonly viewContainer: ViewContainerRef
-  ) { }
-
-  public goToNewPost(): void {
-    this.router.navigate(["posts", "newpost"]);
-  }
-
-  public async onClickEdit(id: string) {
-    const modalRef = await this.modalService.openModal(this.viewContainer, PostEditModalComponent);
-    modalRef.id = id;
+    return firstValueFrom(result);
   }
 }
