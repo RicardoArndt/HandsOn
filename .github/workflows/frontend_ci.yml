@@ -21,8 +21,12 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
-        cache: 'npm'
-    - run: npm install
-      working-directory: hands-on-frontend
-    - run: npm run build -- --prod
-      working-directory: hands-on-frontend
+    - name: Install Dependencies
+      run: npm install
+      working-directory: ./hands-on-frontend
+    - name: Run Build
+      run: npm run build -- --prod
+      working-directory: ./hands-on-frontend
+    - name: Run Test
+      run: npm run test
+      working-directory: ./hands-on-frontend
