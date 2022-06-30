@@ -17,19 +17,15 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: Bash pwd
-      run: pwd
-    - name: Bash ls
-      run: ls
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-        cache-dependency-path: '**/package-lock.json'
+        cache-dependency-path: ./hands-on-frontend/package-lock.json
     - name: Install Dependencies
       run: npm install
-      working-directory: hands-on-frontend
+      working-directory: ./hands-on-frontend
     - name: Run Build
       run: npm run build -- --prod
-      working-directory: hands-on-frontend
+      working-directory: ./hands-on-frontend
