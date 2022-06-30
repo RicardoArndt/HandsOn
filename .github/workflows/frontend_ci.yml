@@ -27,3 +27,6 @@ jobs:
     - name: Run Build
       run: npm run build -- --prod
       working-directory: ./hands-on-frontend
+    - name: Run Test
+      run: npm run test
+      working-directory: ./hands-on-frontend
