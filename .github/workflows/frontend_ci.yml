@@ -21,8 +21,6 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
-        cache: 'npm'
-        cache-dependency-path: ./hands-on-frontend/package-lock.json
     - name: Install Dependencies
       run: npm install
       working-directory: ./hands-on-frontend
