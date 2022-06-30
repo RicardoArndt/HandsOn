@@ -1,0 +1,13 @@
+pool:
+    vmImage: 'ubuntu-latest'
+    
+steps:
+- task: Npm@1
+  inputs:
+    command: install
+    workingDir: '$(Build.SourcesDirectory)/hands-on-frontend'
+- task: Npm@1
+  inputs:
+    command: custom
+    workingDir: '$(Build.SourcesDirectory)/hands-on-frontend'
+    customCommand: 'npm run build -- --prod'
