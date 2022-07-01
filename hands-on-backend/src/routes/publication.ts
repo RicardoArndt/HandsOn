@@ -24,7 +24,9 @@ publicationRouter.put('/:id', (req, res) => {
 });
 
 publicationRouter.get('/', (req, res) => {
-  service.getAll().then(publications => {
+  const { title } = req.query;
+
+  service.getAll(title as string).then(publications => {
     res.send(publications);
   });
 });

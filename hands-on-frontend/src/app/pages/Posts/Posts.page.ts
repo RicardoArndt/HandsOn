@@ -6,11 +6,15 @@ import { ITableBodyElement, ITableHeadElement, TableColumnType, TableValue } fro
 import { PostEditModalComponent } from "./components/PostEditModal.component";
 import { IPostService, POST_SERVICE_TOKEN } from "./services/post.service";
 
+interface IPostSearchParams {
+  title: string;
+}
+
 @Component({
   template: `
     <div class="page">
       <div class="actions">
-        <hands-on-input></hands-on-input>
+        <hands-on-input [(value)]="postSearchParams.title" (valueChange)="getTable()"></hands-on-input>
 
         <hands-on-button
           name="Adicionar"
@@ -55,6 +59,8 @@ export class PostsPage implements OnInit {
 
   public tableBody: ITableBodyElement = { rows: [] };
 
+  public postSearchParams: IPostSearchParams = { title: "" };
+
   constructor(
     private readonly router: Router,
     private readonly modalService: ModalService,
@@ -64,7 +70,7 @@ export class PostsPage implements OnInit {
   ) { }
 
   public ngOnInit(): void {
-    this.getTable().then(body => this.tableBody = body);
+    this.getTable();
   }
 
   public goToNewPost(): void {
@@ -76,8 +82,8 @@ export class PostsPage implements OnInit {
     modalRef.id = id;
   }
 
-  public async getTable(): Promise<ITableBodyElement> {
-    const result = this.postService.getList().pipe(
+  public getTable(): void {
+    const result = this.postService.getList(this.postSearchParams.title).pipe(
       map(posts => ({
         rows: posts.map(post => ({
           columns: [
@@ -108,6 +114,7 @@ export class PostsPage implements OnInit {
       catchError(err => throwError(() => new Error(err)))
     );
 
-    return firstValueFrom(result);
+    firstValueFrom(result)
+      .then(body => this.tableBody = body);
   }
 }

@@ -29,6 +29,7 @@ WHERE p.publication_id = $1;`;
 export const SELECT_ALL = `SELECT *
 FROM publications AS p
 JOIN publications_tags AS pt ON pt.publication_id = p.publication_id
-LEFT JOIN tags AS t ON t.tag_id = pt.tag_id;`;
+LEFT JOIN tags AS t ON t.tag_id = pt.tag_id
+WHERE LOWER(p.title) LIKE LOWER($1) OR $1 = '';`;
 
 export const SELECT_TAGS_BY_ID = `SELECT * FROM publications_tags WHERE publication_id = $1`

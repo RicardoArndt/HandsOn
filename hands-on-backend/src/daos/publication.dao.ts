@@ -14,8 +14,8 @@ export class PublicationDao {
     return PublicationById.fromSelect(entity.rows);
   }
 
-  public async getAll(): Promise<PublicationAll[]> {
-    const entity = await this.connection.get<Publication & Tag>(SELECT_ALL, []);
+  public async getAll(title: string): Promise<PublicationAll[]> {
+    const entity = await this.connection.get<Publication & Tag>(SELECT_ALL, [`%${title}%`]);
 
     return PublicationAll.fromSelect(entity.rows);
   }

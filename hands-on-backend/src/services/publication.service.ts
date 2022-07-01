@@ -54,8 +54,8 @@ export class PublicationService {
     }
   }
 
-  public async getAll(): Promise<IPublicationResponse[]> {
-    const publications = await this.publicationDao.getAll();
+  public async getAll(title: string): Promise<IPublicationResponse[]> {
+    const publications = await this.publicationDao.getAll(title);
 
     return publications.map(publication => ({
       ...publication

@@ -63,7 +63,7 @@ export interface ITagCreateRequest {
 }
 
 export interface IPostService extends ISaveService {
-  getList(): Observable<IPostList[]>;
+  getList(title: string): Observable<IPostList[]>;
   getPostById(id: string): Promise<IPost>;
 }
 
@@ -86,10 +86,15 @@ export class PostService implements IPostService {
       this.httpClient.put<string>(`${environment.apiUrl}/publications/${publication.id}`, publication));
   }
 
-  public getList(): Observable<IPostList[]> {
-    return this.httpClient.get<IPostListResponse[]>(`${environment.apiUrl}/publications`)
-      .pipe(
-        map(res => res.map(p => ({ ...p, createdAt: new Date(p.createdAt) }))));
+  public getList(title: string): Observable<IPostList[]> {
+    const queryParams: URLSearchParams = new URLSearchParams();
+
+    queryParams.append('title', title);
+
+    return this.httpClient.get<IPostListResponse[]>(
+      `${environment.apiUrl}/publications?${queryParams.toString()}`)
+        .pipe(
+          map(res => res.map(p => ({ ...p, createdAt: new Date(p.createdAt) }))));
   }
 
   public getPostById(id: string): Promise<IPost> {
