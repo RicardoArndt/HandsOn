@@ -1,4 +1,4 @@
-import { ICommand } from "src/core/commands/Command";
+import { ICommand } from "../../../core/commands/Command";
 import { IPost, IPostCreateRequest, IPostUpdateRequest } from "../services/post.service";
 import { BaseConsole } from "./Base";
 

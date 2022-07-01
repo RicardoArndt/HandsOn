@@ -1,6 +1,6 @@
 import { Injectable, ViewContainerRef } from "@angular/core";
-import { ButtonColumnComponent } from "../@components/ButtonColumn/ButtonColumn.component";
-import { DefaultColumnComponent } from "../@components/DefaultColumn/DefaultColumn.component";
+import { ButtonColumnComponent } from "../components/ButtonColumn/ButtonColumn.component";
+import { DefaultColumnComponent } from "../components/DefaultColumn/DefaultColumn.component";
 import { TableColumnType } from "../Table";
 
 type UnionType = ButtonColumnComponent | DefaultColumnComponent ;

@@ -1,8 +1,8 @@
 import { Component, Inject, OnInit, ViewContainerRef } from "@angular/core";
 import { Router } from "@angular/router";
 import { catchError, firstValueFrom, map, throwError } from "rxjs";
-import { ModalService } from "../../@components/Modal/services/modal.service";
-import { ITableBodyElement, ITableHeadElement, TableColumnType, TableValue } from "../../@components/Table/Table";
+import { ModalService } from "../../components/Modal/services/modal.service";
+import { ITableBodyElement, ITableHeadElement, TableColumnType, TableValue } from "../../components/Table/Table";
 import { PostEditModalComponent } from "./components/PostEditModal.component";
 import { IPostService, POST_SERVICE_TOKEN } from "./services/post.service";
 

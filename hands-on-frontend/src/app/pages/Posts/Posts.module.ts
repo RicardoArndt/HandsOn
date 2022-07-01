@@ -1,13 +1,13 @@
 import { NgModule } from "@angular/core";
 import { Route, RouterModule } from "@angular/router";
-import { InputModule } from "../../@components/Input/Input.module";
-import { ButtonModule } from "../../@components/Button/Button.module";
-import { NewPostPage } from "./@subpages/NewPost/NewPost.page";
+import { InputModule } from "../../components/Input/Input.module";
+import { ButtonModule } from "../../components/Button/Button.module";
+import { NewPostPage } from "./subpages/NewPost/NewPost.page";
 import { PostsPage } from "./Posts.page";
-import { TableModule } from "../../@components/Table/Table.module";
+import { TableModule } from "../../components/Table/Table.module";
 import { CommonModule } from "@angular/common";
 import { PostService, POST_SERVICE_TOKEN } from "./services/post.service";
-import { ModalModule } from "../../@components/Modal/Modal.module";
+import { ModalModule } from "../../components/Modal/Modal.module";
 import { PostEditModalComponent } from "./components/PostEditModal.component";
 import { FormsModule } from "@angular/forms";
 import { CommandFactory, COMMAND_FACTORY_TOKEN } from "./models/CommandFactory";

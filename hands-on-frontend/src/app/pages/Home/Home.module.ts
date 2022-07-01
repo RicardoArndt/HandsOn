@@ -1,6 +1,6 @@
 import { NgModule } from "@angular/core";
 import { Route, RouterModule } from "@angular/router";
-import { BreacrumbModule } from "src/@components/Breadcrumb/Breadcrumb.module";
+import { BreacrumbModule } from "../../components/Breadcrumb/Breadcrumb.module";
 import { HomePage } from "./Home.page";
 
 const routes: Route[] = [

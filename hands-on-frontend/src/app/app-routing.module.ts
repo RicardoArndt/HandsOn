@@ -14,12 +14,12 @@ const routes: Routes = [
     children: [
       {
         path: "home",
-        loadChildren: () => import("../@pages/Home/Home.module")
+        loadChildren: () => import("./pages/Home/Home.module")
           .then(module => module.HomeModule),
       },
       {
         path: "posts",
-        loadChildren: () => import("../@pages/Posts/Posts.module")
+        loadChildren: () => import("./pages/Posts/Posts.module")
           .then(module => module.PostsModule),
         data: {
           breadcrumb: {

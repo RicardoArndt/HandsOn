@@ -15,7 +15,6 @@ export class PublicationRepository {
   }): Promise<string> {
     await this.connection.execute(INSERT_QUERY, [
       entity.publication.publication_id,
-      entity.publication.code,
       entity.publication.title,
       entity.publication.description,
       entity.publication.created_at,

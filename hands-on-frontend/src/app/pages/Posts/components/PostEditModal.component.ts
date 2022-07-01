@@ -1,6 +1,5 @@
 import { Component, ElementRef, Inject, Input, ViewChild } from "@angular/core";
-import { firstValueFrom } from "rxjs";
-import { IModalInitialize } from "../../../@components/Modal/Modal";
+import { IModalInitialize } from "../../../components/Modal/Modal";
 import { COMMAND_FACTORY_TOKEN, ICommandFactory } from "../models/CommandFactory";
 import { IPost, IPostService, POST_SERVICE_TOKEN } from "../services/post.service";
 
