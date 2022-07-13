@@ -1,0 +1,18 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  border: none;
+  margin: 0;
+  padding: 30px;
+}
+
+.header {
+  background-image: linear-gradient(to right bottom, #8a574ac0, #531d13a8),
+    url("./images/header-img.webp");
+  background-size: cover;
+  background-position: center;
+  height: 95vh;
+  clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+}
