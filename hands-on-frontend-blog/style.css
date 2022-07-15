@@ -1,18 +1,54 @@
 * {
   box-sizing: border-box;
+  font-family: 'Sarabun', sans-serif;
 }
 
 body {
   border: none;
   margin: 0;
-  padding: 30px;
+  padding: 20px;
+}
+
+.logo {
+  font-size: 40px;
+  letter-spacing: 5px;
+  padding: 10px 20px;
+  display: block;
+  color: white;
 }
 
 .header {
-  background-image: linear-gradient(to right bottom, #8a574ac0, #531d13a8),
+  background-image: linear-gradient(to right bottom, #548a4ac0, #13531ea8),
     url("./images/header-img.webp");
   background-size: cover;
   background-position: center;
   height: 95vh;
-  clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+  clip-path: polygon(0 0, 100% 0, 100% 80vh, 0 100%);
+}
+
+.heading {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.heading-primary {
+  text-align: center;
+}
+
+.heading-primary-main {
+  display: block;
+  font-size: 50px;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 10px;
+}
+
+.heading-primary-sub {
+  display: block;
+  font-size: 25px;
+  font-weight: lighter;
+  letter-spacing: 15px;
+  color: white;
 }
