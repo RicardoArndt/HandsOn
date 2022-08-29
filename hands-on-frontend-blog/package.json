@@ -1,0 +1,16 @@
+{
+  "name": "hands-on-frontend-blog",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "compile:sass": "node-sass ./sass/main.scss ./style.css -w",
+    "start": "live-server"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "live-server": "^1.2.2",
+    "node-sass": "^7.0.1"
+  }
+}

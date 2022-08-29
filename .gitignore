@@ -105,3 +105,4 @@ dist
 hands-on-frontend/package-lock.json
 .DS_Store
 hands-on-backend/package-lock.json
+hands-on-frontend-blog/package-lock.json
