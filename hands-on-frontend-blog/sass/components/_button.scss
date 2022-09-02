@@ -1,5 +1,6 @@
 .btn {
   font-size: 1.6rem;
+  z-index: 1;
 
   &--animated {
     animation-name: moveInBottom;
@@ -15,6 +16,15 @@
 
     &::after {
       background-color: $color-white;
+    }
+  }
+
+  &--green {
+    background-image: linear-gradient(to right, $color-primary-light, $color-primary-dark);
+    color: $color-white;
+
+    &::after {
+      background-color: $color-primary;
     }
   }
 
