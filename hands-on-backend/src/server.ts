@@ -13,6 +13,7 @@ import 'express-async-errors';
 import apiRouter from './routes/api';
 import logger from 'jet-logger';
 import { CustomError } from '@shared/errors';
+import { auth } from 'express-openid-connect';
 
 
 // Constants
@@ -22,6 +23,21 @@ const app = express();
 /***********************************************************************************
  *                                  Middlewares
  **********************************************************************************/
+
+const config = {
+authRequired: false,
+auth0Logout: false,
+baseURL: process.env.SAMLBASEURL,
+clientID: process.env.SAMLCLIENTID,
+issuerBaseURL: process.env.SAMLISSUERBASEURL,
+secret: process.env.SAMLSECRET
+};
+
+app.use(auth(config));
+
+app.get('/logged', (req, res) => {
+res.send(req.oidc.isAuthenticated() ? 'Logged in' : 'Logged out')
+});
 
 // Common middlewares
 app.use(cors());

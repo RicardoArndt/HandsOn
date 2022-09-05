@@ -22,7 +22,7 @@
 
 .section-tours {
   background-color: $color-grey-light-1;
-  padding: 25rem 0 50rem 0;
+  padding: 25rem 0 5rem 0;
   margin-top: -10rem;
 
   &__picture {
@@ -44,4 +44,9 @@
         url(./images/nat-5.jpg);
     }
   }
+}
+
+.section-stories {
+  padding: 5rem 0;
+  position: relative;
 }
