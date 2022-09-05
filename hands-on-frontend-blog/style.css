@@ -81,6 +81,8 @@ body {
   .heading-secondary:hover {
     transform: skewY(2deg) skewX(15deg) scale(1.1);
     text-shadow: 0.5rem 1rem 2rem rgba(0, 0, 0, 0.2); }
+  .heading-secondary--small {
+    font-size: 2.5rem; }
 
 .heading-tertiary, .feature-box__title {
   font-size: 1.6rem;
@@ -98,6 +100,9 @@ body {
 .u-left-text {
   text-align: left; }
 
+.u-margin-top-big {
+  margin-top: 8rem; }
+
 .u-margin-bottom-big {
   margin-bottom: 8rem; }
 
@@ -114,6 +119,8 @@ body {
   color: transparent; }
 
 .bg-video {
+  width: 100%;
+  height: 100%;
   position: absolute;
   top: 0;
   left: 0;
@@ -121,6 +128,8 @@ body {
   opacity: .15;
   overflow: hidden; }
   .bg-video__content {
+    width: 100%;
+    height: 100%;
     object-fit: cover; }
 
 .btn {
@@ -142,20 +151,27 @@ body {
     color: #fff; }
     .btn--green::after {
       background-color: #55c57a; }
-  .btn:link, .btn:visited {
+  .btn--small {
+    font-size: 1.4rem; }
+    .btn--small:link, .btn--small:visited {
+      padding: 1rem 4rem !important; }
+  .btn, .btn:link, .btn:visited {
     text-transform: uppercase;
     text-decoration: none;
     padding: 1.5rem 4rem;
     display: inline-block;
     border-radius: 10rem;
     transition: all .2s;
-    position: relative; }
+    position: relative;
+    border: none;
+    cursor: pointer; }
   .btn:hover {
     box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2); }
     .btn:hover::after {
       transform: scaleX(1.4) scaleY(1.6);
       opacity: 0; }
-  .btn:active {
+  .btn:active, .btn:focus {
+    outline: none;
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2); }
   .btn::after {
     content: "";
@@ -315,6 +331,78 @@ body {
     font-size: 6rem;
     margin-bottom: .5rem; }
 
+.form {
+  width: 100%; }
+  .form__group {
+    margin: 3rem 0;
+    position: relative; }
+  .form__input {
+    font-size: 1.5rem;
+    font-family: inherit;
+    color: inherit;
+    padding: 1.5rem 2rem;
+    border-radius: 2px;
+    background-color: white;
+    border: none;
+    border-bottom: 3px solid transparent;
+    width: 90%;
+    display: block;
+    transition: all .3s; }
+    .form__input:focus {
+      outline: none;
+      box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.1);
+      border-bottom: 3px solid #55c57a; }
+    .form__input:focus:invalid {
+      border-bottom: 3px solid #ff7730; }
+    .form__input::-webkit-input-placeholder {
+      color: #999; }
+  .form__label {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: .7rem;
+    display: block;
+    transition: all .3s;
+    position: absolute;
+    top: -2rem; }
+  .form__input:placeholder-shown + .form__label {
+    opacity: 0;
+    visibility: hidden;
+    transform: translate(2rem, 4rem); }
+  .form__radio-group {
+    width: 49%;
+    display: inline-block; }
+  .form__radio-label {
+    font-size: 1.4rem;
+    cursor: pointer;
+    position: relative;
+    padding-left: 3.5rem; }
+  .form__radio-button {
+    height: 1.6rem;
+    width: 1.6rem;
+    border: 0.5rem solid #55c57a;
+    border-radius: 50%;
+    display: inline-block;
+    position: absolute;
+    left: 0;
+    top: -.5rem; }
+    .form__radio-button::after {
+      content: "";
+      display: block;
+      height: 1rem;
+      width: 1rem;
+      border-radius: 50%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #55c57a;
+      transition: all .3s;
+      opacity: 0; }
+  .form__radio-input {
+    display: none; }
+  .form__radio-input:checked ~ .form__radio-label > .form__radio-button::after {
+    opacity: 1; }
+
 .story {
   width: 75%;
   margin: 0 auto;
@@ -333,8 +421,9 @@ body {
     shape-outside: circle(50% at 50% 50%);
     -webkit-clip-path: circle(50% at 50% 50%);
     clip-path: circle(50% at 50% 50%);
-    transform: translateX(-3rem) skewX(12deg);
-    position: relative; }
+    transform: translateX(-3rem) skewX(13deg);
+    position: relative;
+    backface-visibility: hidden; }
   .story__img {
     height: 100%;
     transform: translateX(-4rem) scale(1.2);
@@ -430,5 +519,18 @@ body {
     background-image: linear-gradient(to bottom right, #2998ff, #5643fa), url(./images/nat-5.jpg); }
 
 .section-stories {
-  padding: 5rem 0;
+  padding-bottom: 5rem;
   position: relative; }
+
+.section-book {
+  padding: 15rem 0;
+  background-image: linear-gradient(to right bottom, #7ed56f, #28b485); }
+  .section-book .book {
+    height: 50rem;
+    border-radius: 3px;
+    box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.15);
+    background-size: cover;
+    background-image: linear-gradient(105deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.9) 55%, transparent 55%), url("./images/nat-5.jpg"); }
+    .section-book .book__form {
+      width: 38%;
+      padding: 6rem; }

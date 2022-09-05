@@ -28,6 +28,16 @@
     }
   }
 
+  &--small {
+    font-size: 1.4rem;
+
+    &:link,
+    &:visited {
+      padding: 1rem 4rem !important;
+    }
+  }
+
+  &,
   &:link,
   &:visited {
     text-transform: uppercase;
@@ -37,6 +47,8 @@
     border-radius: 10rem;
     transition: all .2s;
     position: relative;
+    border: none;
+    cursor: pointer;
   }
 
   &:hover {
@@ -48,7 +60,9 @@
     }
   }
 
-  &:active {
+  &:active,
+  &:focus {
+    outline: none;
     box-shadow: 0 0.5rem 1rem rgba($color-black, .2);
   }
 
