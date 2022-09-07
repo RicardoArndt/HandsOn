@@ -6,9 +6,11 @@
     url("./images/header-img.webp");
   background-size: cover;
   background-position: center;
-  height: 95vh;
+  height: 100vh;
+  z-index: 1;
   clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
   -webkit-clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+  position: relative;
 
   &__logo {
     font-size: 4rem;
