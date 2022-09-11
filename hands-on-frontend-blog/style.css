@@ -751,6 +751,9 @@ body {
   clip-path: polygon(0 0, 100% 0, 100% 80vh, 0 100%);
   -webkit-clip-path: polygon(0 0, 100% 0, 100% 80vh, 0 100%);
   position: relative; }
+  @media (min-resolution: 192dpi) and (min-width: 37.5em), (min-width: 125em) {
+    .header {
+      background-image: linear-gradient(to right bottom, rgba(126, 213, 111, 0.8), rgba(40, 180, 133, 0.8)), url("./images/hero.jpg"); } }
   @media (max-width: 56.25em) {
     .header {
       clip-path: polygon(0 0, 100% 0, 100% 90vh, 0 100%);
