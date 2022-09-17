@@ -2,85 +2,10 @@ body {
   font-family: 'Raleway', sans-serif;
   font-weight: 400;
   line-height: 1.7;
-  color: $color-grey-dark;
-}
+  color: var(--color-white);
+  background-image: linear-gradient(to bottom right, var(--color-primary), var(--color-primary-light));
+  background-size: cover;
+  background-repeat: no-repeat;
 
-.heading-primary {
-  text-align: center;
-  margin-bottom: 6rem;
-  backface-visibility: hidden;
-
-  &--main {
-    display: block;
-    font-size: 5rem;
-    color: $color-white;
-    text-transform: uppercase;
-    letter-spacing: 1rem;
-
-    animation-name: moveInLeft;
-    animation-duration: 1s;
-    animation-timing-function: ease-out;
-
-    @include respond(phone) {
-      letter-spacing: 1rem;
-      font-size: 5rem;
-    }
-  }
-
-  &--sub {
-    display: block;
-    font-size: 2.5rem;
-    font-weight: lighter;
-    letter-spacing: 1.5rem;
-    color: $color-white;
-
-    animation-name: moveInRight;
-    animation-duration: 1s;
-    animation-timing-function: ease-out;
-
-    @include respond(phone) {
-      letter-spacing: .5rem;
-    }
-  }
-}
-
-.heading-secondary {
-  font-size: 3.5rem;
-  text-transform: uppercase;
-  font-weight: 700;
-  @extend .u-background-image-linear-gradient;
-  transition: all .2s;
-  letter-spacing: .2rem;
-  cursor: default;
-
-  @include respond(tab-port) {
-    font-size: 3rem;
-  }
-
-  @include respond(phone) {
-    font-size: 2rem;
-  }
-
-  &:hover {
-    transform: skewY(2deg) skewX(15deg) scale(1.1);
-    text-shadow: .5rem 1rem 2rem rgba($color-black, .2);
-  }
-
-  &--small {
-    font-size: 2.5rem;
-  }
-}
-
-.heading-tertiary {
-  font-size: $default-font-size;
-  font-weight: 700;
-  text-transform: uppercase;
-}
-
-.paragraph {
-  font-size: $default-font-size;
-
-  &:not(:last-child) {
-    margin-bottom: 3rem;
-  }
+  height: 100vh;
 }

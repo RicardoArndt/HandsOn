@@ -1,0 +1,77 @@
+/*
+0     -   600 :   Phone
+600   -   900 :   Tablet portrait
+900   -   1200:   Tablet landscape
+1200  -   1800:   is where our normal styles apply
+1800  +       :   Big desktop
+*/
+:root {
+  --color-primary: #1C1F3E;
+  --color-primary-light: #383e78;
+  --color-secondary: #4CA7FF;
+  --color-secondary-light: #67D0F4;
+  --color-white: #FFF; }
+
+*
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit; }
+
+html {
+  font-size: 62.5%;
+  scroll-behavior: smooth; }
+  @media (min-width: 112.5em) {
+    html {
+      font-size: 75%; } }
+  @media (max-width: 75em) {
+    html {
+      font-size: 56.25%; } }
+  @media (max-width: 56.25em) {
+    html {
+      font-size: 50%; } }
+
+body {
+  margin: 0;
+  padding: 3em;
+  box-sizing: border-box; }
+  @media (max-width: 56.25em) {
+    body {
+      padding: 0; } }
+
+body {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 400;
+  line-height: 1.7;
+  color: var(--color-white);
+  background-image: linear-gradient(to bottom right, var(--color-primary), var(--color-primary-light));
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100vh; }
+
+.u-center-text {
+  text-align: center; }
+
+.brand__text {
+  font-size: 1.8rem;
+  font-weight: 600; }
+
+.header {
+  display: flex;
+  align-items: center; }
+
+.navigation {
+  flex: 1; }
+  .navigation__list {
+    display: flex;
+    list-style: none;
+    justify-content: end; }
+  .navigation__item {
+    font-size: 1.6rem;
+    font-weight: 600; }
+    .navigation__item:not(:first-child) {
+      margin-left: 4rem; }
+  .navigation__link:link, .navigation__link:visited {
+    text-decoration: none;
+    color: white; }
