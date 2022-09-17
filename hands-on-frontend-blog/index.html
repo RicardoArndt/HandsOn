@@ -12,26 +12,89 @@
 </head>
 
 <body>
-  <header class="header">
-    <div class="brand">
-      <span class="brand__text">
-        Hands On
-      </span>
+  <div class="container">
+    <div class="content">
+      <header class="header">
+        <div class="brand">
+          <span class="brand__text">
+            Hands On
+          </span>
+        </div>
+        <nav class="navigation">
+          <ul class="navigation__list">
+            <li class="navigation__item">
+              <a href="#" class="navigation__link navigation__link--active">Home</a>
+            </li>
+            <li class="navigation__item">
+              <a href="#" class="navigation__link">Contact</a>
+            </li>
+            <li class="navigation__item">
+              <a href="#" class="navigation__link">Blog</a>
+            </li>
+          </ul>
+        </nav>
+      </header>
+
+      <section class="home">
+        <div class="box">
+          <div class="box__left">
+            <h1 class="heading heading__primary">
+              The best software quality
+            </h1>
+
+            <h1 class="heading heading__primary--sub">
+              We are specialized in angular and we deliver the most up-to-date technology on the market
+            </h1>
+
+            <div class="box__btn">
+              <a href="https://www.linkedin.com/in/ricardo-arndt-9534b11b0/" class="btn btn__primary"
+                target="_blank">View
+                Linkedin
+                Profile</a>
+            </div>
+          </div>
+
+          <div class="box__right">
+            <img src="images/me_bg_transparent.png" alt="Ricardo Guilherme Arndt" class="box__img">
+
+            <div class="card card--horizontal card--right">
+              <img src="images/angular_logo.png" alt="Angular Logo" class="card__img">
+
+              <div class="card__description">
+                <h1 class="heading heading__primary">5Y+</h1>
+                <h1 class="heading heading__primary--sub">Exp</h1>
+              </div>
+
+              <div class="card__description">
+                <svg class="card__icon">
+                  <use xlink:href="images/sprite.svg#icon-trophy"></use>
+                </svg>
+                <h1 class="heading heading__primary--sub">Assmt</h1>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="box u-margin-top-medium">
+          <div class="box__left">
+            <div class="card card--horizontal card--left">
+              <div class="card__description">
+                <a href="https://www.veralogica.com/" class="card__link--img" target="_blank">
+                  <img src="images/veralogica.webp" class="card__logo">
+                </a>
+              </div>
+
+              <div class="card__description">
+                <a href="https://www.ambevtech.com.br/" class="card__link--img" target="_blank">
+                  <img src="images/Ambev-Tech_amarelo.png" class="card__logo">
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
-    <nav class="navigation">
-      <ul class="navigation__list">
-        <li class="navigation__item">
-          <a href="#" class="navigation__link">Linkedin</a>
-        </li>
-        <li class="navigation__item">
-          <a href="#" class="navigation__link">Github</a>
-        </li>
-        <li class="navigation__item">
-          <a href="#" class="navigation__link">Blog</a>
-        </li>
-      </ul>
-    </nav>
-  </header>
+  </div>
 </body>
 
 </html>

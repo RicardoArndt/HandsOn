@@ -8,19 +8,36 @@
   }
 
   &__item {
-    font-size: 1.6rem;
-    font-weight: 600;
-
     &:not(:first-child) {
-      margin-left: 4rem;
+      margin-left: 1.8rem;
     }
   }
 
   &__link {
+    transition: all .3s;
+
     &:link,
     &:visited {
+      font-size: 1.6rem;
+      font-weight: 400;
+      color: var(--color-grey-light-1);
       text-decoration: none;
-      color: white;
+    }
+
+    &:hover {
+      &:link,
+      &:visited {
+        text-shadow: 0 0 2rem var(--color-white);
+        color: var(--color-white);
+      }
+    }
+
+    &--active {
+      &:link,
+      &:visited {
+        color: var(--color-white);
+        font-weight: 600;
+      }
     }
   }
 }

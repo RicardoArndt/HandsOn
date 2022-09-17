@@ -1,11 +1,33 @@
 body {
-  font-family: 'Raleway', sans-serif;
+  font-family: 'Noto Sans', sans-serif;
   font-weight: 400;
   line-height: 1.7;
   color: var(--color-white);
-  background-image: linear-gradient(to bottom right, var(--color-primary), var(--color-primary-light));
-  background-size: cover;
-  background-repeat: no-repeat;
+}
 
-  height: 100vh;
+.heading {
+  margin-top: 0;
+  margin-bottom: 2.7rem;
+
+  &__primary {
+    font-size: 4.6rem;
+    color: var(--color-white);
+    font-weight: bold;
+
+    &--sub {
+      font-size: 1.8rem;
+      color: var(--color-grey-light-1);
+      font-weight: 400;
+    }
+
+    &--grey {
+      color: var(--color-grey-light-1);
+    }
+  }
+
+  &__secondary {
+    font-size: 3.6rem;
+    color: var(--color-grey-light-1);
+    font-weight: bold;
+  }
 }

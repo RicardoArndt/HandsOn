@@ -1,0 +1,30 @@
+.box {
+  display: flex;
+
+  &__left {
+    flex: 0 0 50%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__right {
+    flex: 0 0 50%;
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column;
+  }
+
+  &__img {
+    width: 30rem;
+    filter: drop-shadow(-.6rem 0 .6rem var(--color-black));
+  }
+
+  &__img + * {
+    margin-top: -4.1rem;
+    position: relative;
+  }
+
+  &__btn {
+    margin-top: 3rem;
+  }
+}
