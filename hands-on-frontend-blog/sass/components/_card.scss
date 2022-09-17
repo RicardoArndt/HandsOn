@@ -12,6 +12,7 @@
     left: 0;
     width: 100%;
     overflow: hidden;
+    -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
     border-radius: 3px;
     box-shadow: $shadow-1;
@@ -137,7 +138,8 @@
     font-weight: 100;
   }
 
-  @include respond(tab-port) {
+  @media  only screen and (max-width: 56.25em),
+          only screen and (hover: none) {
     height: auto;
     border-radius: 3px;
     background-color: $color-white;
