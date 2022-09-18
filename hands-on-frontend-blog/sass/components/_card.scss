@@ -54,12 +54,16 @@
 
   &__logo {
     max-width: 20rem;
+
+    &--ambev {
+      margin-top: .8rem !important;
+    }
   }
 
   &__description {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: flex-start;
     line-height: 4rem;
     text-transform: uppercase;

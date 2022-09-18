@@ -1,4 +1,8 @@
 .btn {
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+
   &,
   &:link,
   &:visited {
@@ -12,5 +16,30 @@
 
   &__primary {
     background-image: linear-gradient(to right bottom, var(--color-secondary), var(--color-secondary-light));
+
+    &:hover {
+      background-image: linear-gradient(to right bottom, var(--color-secondary-light), var(--color-secondary));
+    }
+  }
+
+  &__primary:hover &__text--hidden {
+    transform: translateY(0%);
+  }
+
+  &__primary:hover &__text--visible {
+    transform: translateY(150%);
+  }
+
+  &__text {
+    transition: all .3s;
+    display: inline-block;
+
+    &--hidden {
+      position: absolute;
+      transform: translateY(-150%);
+      width: 100%;
+      text-align: center;
+      left: 0;
+    }
   }
 }
