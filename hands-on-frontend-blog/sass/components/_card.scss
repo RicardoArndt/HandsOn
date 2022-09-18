@@ -4,6 +4,8 @@
   position: relative;
   border-radius: .5rem;
   flex-direction: column;
+  padding: 3rem;
+  align-self: center;
 
   &--right {
     border-top-right-radius: 0;
@@ -23,11 +25,9 @@
   }
 
   &--group {
-    flex: 0 0 50%;
-
-    &:not(:last-child) {
-      margin-right: 3rem;
-    }
+    margin-top: 3rem;
+    flex: 0 0 45%;
+    box-sizing: border-box;
   }
 
   &--left {
@@ -76,7 +76,6 @@
     justify-content: space-between;
     align-items: flex-start;
     line-height: 4rem;
-    text-transform: uppercase;
 
     &:not(:last-child) {
       margin-right: 3rem;

@@ -20,7 +20,7 @@
 *::before {
   margin: 0;
   padding: 0;
-  box-sizing: inherit; }
+  box-sizing: border-box; }
 
 html {
   font-size: 62.5%;
@@ -127,7 +127,9 @@ body {
   background-color: var(--color-primary-light);
   position: relative;
   border-radius: .5rem;
-  flex-direction: column; }
+  flex-direction: column;
+  padding: 3rem;
+  align-self: center; }
   .card--right {
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
@@ -142,9 +144,9 @@ body {
       top: 60%;
       background-color: var(--color-primary-light); }
   .card--group {
-    flex: 0 0 50%; }
-    .card--group:not(:last-child) {
-      margin-right: 3rem; }
+    margin-top: 3rem;
+    flex: 0 0 45%;
+    box-sizing: border-box; }
   .card--left {
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
@@ -178,8 +180,7 @@ body {
     flex-direction: column;
     justify-content: space-between;
     align-items: flex-start;
-    line-height: 4rem;
-    text-transform: uppercase; }
+    line-height: 4rem; }
     .card__description:not(:last-child) {
       margin-right: 3rem; }
     .card__description * {
@@ -211,7 +212,9 @@ body {
   padding: 3rem 0; }
 
 .row {
-  display: flex; }
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between; }
   .row:not(:first-child) {
     margin-top: 3rem; }
 
