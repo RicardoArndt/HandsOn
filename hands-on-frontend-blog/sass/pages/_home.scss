@@ -1,3 +1,51 @@
-.home {
-  padding: 3rem 0;
+.section {
+  padding: 3rem 0 10rem 0;
+
+  &__title {
+    text-align: center;
+    position: relative;
+    margin-bottom: 9rem;
+
+    &--front {
+      position: relative;
+      z-index: 10;
+      background-color: var(--color-primary);
+      padding: 0 1rem;
+    }
+
+    &--back {
+      text-transform: uppercase;
+      -webkit-text-stroke: 2px var(--color-primary-light);
+      color: var(--color-primary);
+      letter-spacing: 1rem;
+      font-size: 15rem;
+      position: absolute;
+      z-index: 3;
+      top: -10rem;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    &::before {
+      content: "";
+      position: absolute;
+      width: 50%;
+      height: 3px;
+      top: 50%;
+      left: 0;
+      z-index: 2;
+      background-color: var(--color-primary-light);
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      width: 50%;
+      height: 3px;
+      top: 50%;
+      right: 0;
+      z-index: 2;
+      background-color: var(--color-primary-light);
+    }
+  }
 }

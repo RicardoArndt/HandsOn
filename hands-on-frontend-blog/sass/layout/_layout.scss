@@ -1,0 +1,7 @@
+.row {
+  display: flex;
+
+  &:not(:first-child) {
+    margin-top: 3rem;
+  }
+}

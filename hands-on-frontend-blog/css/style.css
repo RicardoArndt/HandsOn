@@ -126,7 +126,8 @@ body {
   display: flex;
   background-color: var(--color-primary-light);
   position: relative;
-  border-radius: .5rem; }
+  border-radius: .5rem;
+  flex-direction: column; }
   .card--right {
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
@@ -140,6 +141,10 @@ body {
       left: -100%;
       top: 60%;
       background-color: var(--color-primary-light); }
+  .card--group {
+    flex: 0 0 50%; }
+    .card--group:not(:last-child) {
+      margin-right: 3rem; }
   .card--left {
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
@@ -156,7 +161,8 @@ body {
   .card--horizontal {
     flex: 1;
     align-self: stretch;
-    padding: 2rem 3rem; }
+    padding: 2rem 3rem;
+    flex-direction: row; }
   .card__img {
     width: 13rem;
     position: absolute;
@@ -184,13 +190,14 @@ body {
     fill: var(--color-white); }
   .card__link--img {
     display: flex;
-    align-items: center; }
+    align-items: center;
+    cursor: pointer; }
 
 .container {
   width: 100%;
   display: flex;
   justify-content: center;
-  background-image: linear-gradient(to bottom right, var(--color-primary), var(--color-primary-light));
+  background-color: var(--color-primary);
   background-size: cover;
   background-repeat: no-repeat;
   min-height: 100vh; }
@@ -202,6 +209,11 @@ body {
   display: flex;
   align-items: center;
   padding: 3rem 0; }
+
+.row {
+  display: flex; }
+  .row:not(:first-child) {
+    margin-top: 3rem; }
 
 .navigation {
   flex: 1; }
@@ -225,5 +237,43 @@ body {
       color: var(--color-white);
       font-weight: 600; }
 
-.home {
-  padding: 3rem 0; }
+.section {
+  padding: 3rem 0 10rem 0; }
+  .section__title {
+    text-align: center;
+    position: relative;
+    margin-bottom: 9rem; }
+    .section__title--front {
+      position: relative;
+      z-index: 10;
+      background-color: var(--color-primary);
+      padding: 0 1rem; }
+    .section__title--back {
+      text-transform: uppercase;
+      -webkit-text-stroke: 2px var(--color-primary-light);
+      color: var(--color-primary);
+      letter-spacing: 1rem;
+      font-size: 15rem;
+      position: absolute;
+      z-index: 3;
+      top: -10rem;
+      left: 50%;
+      transform: translateX(-50%); }
+    .section__title::before {
+      content: "";
+      position: absolute;
+      width: 50%;
+      height: 3px;
+      top: 50%;
+      left: 0;
+      z-index: 2;
+      background-color: var(--color-primary-light); }
+    .section__title::after {
+      content: "";
+      position: absolute;
+      width: 50%;
+      height: 3px;
+      top: 50%;
+      right: 0;
+      z-index: 2;
+      background-color: var(--color-primary-light); }
