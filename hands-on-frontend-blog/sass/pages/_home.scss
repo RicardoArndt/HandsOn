@@ -1,16 +1,28 @@
 .section {
   padding: 3rem 0 10rem 0;
 
+  @include respond(phone) {
+    padding: 3rem 3rem 8rem 3rem;
+  }
+
   &__title {
     text-align: center;
     position: relative;
     margin-bottom: 9rem;
+
+    @include respond(tab) {
+      margin-bottom: 6rem;
+    }
 
     &--front {
       position: relative;
       z-index: 10;
       background-color: var(--color-primary);
       padding: 0 1rem;
+
+      @include respond(tab) {
+        font-size: 3rem;
+      }
     }
 
     &--back {
@@ -24,6 +36,16 @@
       top: -10rem;
       left: 50%;
       transform: translateX(-50%);
+
+      @include respond(tab) {
+        font-size: 10rem;
+        top: -7rem;
+      }
+
+      @include respond(phone) {
+        font-size: 6rem;
+        top: -4rem;
+      }
     }
 
     &::before {

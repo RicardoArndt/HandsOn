@@ -11,4 +11,12 @@
 
 .content {
   width: 120rem;
+
+  @include respond(tab-land) {
+    padding: 3rem;
+  }
+
+  @include respond(phone) {
+    padding: 0;
+  }
 }

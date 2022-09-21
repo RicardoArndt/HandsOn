@@ -3,4 +3,8 @@
   align-items: center;
 
   padding: 3rem 0;
+
+  @include respond(phone) {
+    padding: 3rem;
+  }
 }

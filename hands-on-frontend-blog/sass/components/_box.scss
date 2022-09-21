@@ -1,6 +1,10 @@
 .box {
   display: flex;
 
+  @include respond(tab) {
+    flex-direction: column;
+  }
+
   &__left {
     flex: 0 0 50%;
     display: flex;

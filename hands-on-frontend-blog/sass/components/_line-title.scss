@@ -1,0 +1,27 @@
+.line-title {
+  display: flex;
+  font-size: 1.4rem;
+  line-height: 3rem;
+
+  &__sub-title {
+    padding: 0 1rem;
+    transition: all .5s;
+
+    @include respond(phone) {
+      padding-right: 0;
+    }
+
+    &:hover {
+      box-shadow: 0 0 1rem rgba(0, 0, 0, .5);
+      transform: scale(1.1) translateX(1rem);
+    }
+  }
+
+  &__link {
+    &:link,
+    &:visited {
+      text-decoration: none;
+      color: var(--color-grey-light-1);
+    }
+  }
+}

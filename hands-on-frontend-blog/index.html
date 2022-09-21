@@ -9,6 +9,13 @@
   <title>Hands On</title>
 
   <link rel="stylesheet" href="css/style.css">
+
+  <script>
+    const hideMenu = () => {
+      const input = document.getElementById('checkbox-toggler');
+      input.click();
+    }
+  </script>
 </head>
 
 <body>
@@ -20,22 +27,33 @@
             Hands On
           </span>
         </div>
-        <nav class="navigation">
-          <ul class="navigation__list">
-            <li class="navigation__item">
-              <a href="#" class="navigation__link navigation__link--active">Home</a>
-            </li>
-            <li class="navigation__item">
-              <a href="#" class="navigation__link">Contact</a>
-            </li>
-            <li class="navigation__item">
-              <a href="#" class="navigation__link">Blog</a>
-            </li>
-          </ul>
-        </nav>
+
+        <div class="navigation">
+          <input type="checkbox" for="toggle-btn" id="checkbox-toggler" class="navigation__toggler-check">
+
+          <label id="toggle-btn" class="navigation__toggler-btn">
+            <span class="navigation__toggler-icon"></span>
+          </label>
+
+          <div class="navigation__background">&nbsp;</div>
+
+          <nav class="navigation__nav">
+            <ul class="navigation__list">
+              <li class="navigation__item" onclick="hideMenu()">
+                <a href="#home" class="navigation__link navigation__link--active">Home</a>
+              </li>
+              <li class="navigation__item" onclick="hideMenu()">
+                <a href="#skills" class="navigation__link">Skills</a>
+              </li>
+              <li class="navigation__item" onclick="hideMenu()">
+                <a href="#contact" class="navigation__link">Contact</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
       </header>
 
-      <section class="section section__home">
+      <section class="section section__home" id="home">
         <div class="box">
           <div class="box__left">
             <h1 class="heading heading__primary">
@@ -43,7 +61,8 @@
             </h1>
 
             <h1 class="heading heading__primary--sub">
-              We are specialized in Angular and we deliver the most up-to-date technology on the market
+              I'm a specialist in angular I have more than five years of experience, four years working at Ambev and one
+              year working at Veralogica, a German company.
             </h1>
 
             <div class="box__btn">
@@ -99,7 +118,7 @@
         </div>
       </section>
 
-      <section class="section section__skills">
+      <section class="section section__skills" id="skills">
         <h1 class="heading heading__primary section__title">
           <span class="section__title--front">Skills</span>
           <span class="section__title--back">Skills</span>
@@ -167,6 +186,44 @@
           </div>
         </div>
       </section>
+
+      <section class="section section__contact" id="contact">
+        <h1 class="heading heading__primary section__title">
+          <span class="section__title--front">Contact</span>
+          <span class="section__title--back">Contact</span>
+        </h1>
+
+        <div class="row">
+          <div class="card">
+            <div class="card__description">
+              <h1 class="heading heading__primary">Ricardo Guilherme Arndt</h1>
+              <h1 class="heading heading__primary--sub">Blumenau - SC</h1>
+
+              <div class="line-title">
+                <span class="line-title__title">Phone:</span>
+                <span class="line-title__sub-title">
+                  <a class="line-title__link"
+                    href="https://api.whatsapp.com/send?phone=+5547999001812&text=Hi Ricardo, I'm see your profile in your webpage and a have interested your job!"
+                    target="_blank">(47)9
+                    9900-1812</a>
+                </span>
+              </div>
+
+              <div class="line-title">
+                <span class="line-title__title">E-mail:</span>
+                <span class="line-title__sub-title">
+                  <a class="line-title__link" href="mailto:ricardoguilhermearndt@gmail.com"
+                    target="_blank">ricardoguilhermearndt@gmail.com</a>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer">
+        &copy; Copyright 2022 Hands On
+      </footer>
     </div>
   </div>
 </body>
