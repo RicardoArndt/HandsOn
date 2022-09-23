@@ -1,0 +1,38 @@
+name: CI
+
+on:
+  push:
+    branches: 
+      - main
+    paths:
+      - hands-on-frontend-blog/**
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 🚚 Get latest code
+        uses: actions/checkout@v2
+
+      - name: Use Node.js 16
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+
+      - name: 🔨 Build Project
+        run: |
+          npm install
+          npm run build
+        working-directory: ./hands-on-frontend-blog
+
+      - name: 🏃‍♀FTP Deploy
+        uses: SamKirkland/FTP-Deploy-Action@4.3.2
+        with:
+          server: ftp.ricardoarndt.com
+          username: github@ricardoarndt.com
+          password: ${{ secrets.ftp_password }}
+          local-dir: ./hands-on-frontend-blog/dist/
+
