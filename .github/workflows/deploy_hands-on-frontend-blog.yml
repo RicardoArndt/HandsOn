@@ -1,4 +1,4 @@
-name: CI
+name: Deploy - Frontend Hands ON Blog
 
 on:
   push:
