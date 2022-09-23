@@ -6,14 +6,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-  <title>Hands On</title>
+  <title>Ricardo Arndt</title>
 
   <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" type="image/x-icon" href="images/favicon.ico">
 
   <script>
     const hideMenu = () => {
-      const input = document.getElementById('checkbox-toggler');
-      input.click();
+      if (window.outerWidth > 1200) {
+        return;
+      }
+
+      const inputElement = document.getElementById('checkbox-toggler');
+      inputElement.click();
     }
   </script>
 </head>
@@ -24,7 +29,7 @@
       <header class="header">
         <div class="brand">
           <span class="brand__text">
-            Hands On
+            Ricardo Arndt
           </span>
         </div>
 
@@ -46,7 +51,7 @@
                 <a href="#skills" class="navigation__link">Skills</a>
               </li>
               <li class="navigation__item" onclick="hideMenu()">
-                <a href="#contact" class="navigation__link">Contact</a>
+                <a href="#contact" class="navigation__link">Contato</a>
               </li>
             </ul>
           </nav>
@@ -57,17 +62,18 @@
         <div class="box">
           <div class="box__left">
             <h1 class="heading heading__primary">
-              The best software quality
+              Prezo pela entrega com qualidade
             </h1>
 
             <h1 class="heading heading__primary--sub">
-              I'm a specialist in angular I have more than five years of experience, four years working at Ambev and one
-              year working at Veralogica, a German company.
+              Sou especialista em Angular e acredito que nenhum framework é melhor ou pior, projetos apenas possuem
+              necessidades diferentes. Por esse motivo busco sempre me desafiar e
+              desenvolver estudando novos frameworks como por exemplo, React.
             </h1>
 
             <div class="box__btn">
               <a href="https://www.linkedin.com/in/ricardo-arndt-9534b11b0/" class="btn btn__primary" target="_blank">
-                <span class="btn__text btn__text--visible">View Linkedin Profile</span>
+                <span class="btn__text btn__text--visible">Ver perfil Linkedin</span>
 
                 <span class="btn__text btn__text--hidden">Ricardo Arndt</span>
               </a>
@@ -81,8 +87,8 @@
               <img src="images/angular_logo.png" alt="Angular Logo" class="card__img">
 
               <div class="card__description">
-                <h1 class="heading heading__primary">5Y+</h1>
-                <h1 class="heading heading__primary--sub">Exp</h1>
+                <h1 class="heading heading__primary">+ 4 anos</h1>
+                <h1 class="heading heading__primary--sub">Experiência</h1>
               </div>
 
               <div class="card__description">
@@ -103,15 +109,7 @@
                   <img src="images/Ambev-Tech_amarelo.png" class="card__logo card__logo--ambev">
                 </a>
 
-                <h1 class="heading heading__primary--sub">4 years experience</h1>
-              </div>
-
-              <div class="card__description">
-                <a href="https://www.veralogica.com/" class="card__link--img" target="_blank">
-                  <img src="images/veralogica.webp" class="card__logo">
-                </a>
-
-                <h1 class="heading heading__primary--sub">1 year experience</h1>
+                <h1 class="heading heading__primary--sub">4 anos</h1>
               </div>
             </div>
           </div>
@@ -128,42 +126,42 @@
           <div class="card card--group">
             <div class="card__description">
               <h1 class="heading heading__primary">Angular / Typescript</h1>
-              <h1 class="heading heading__primary--sub">Advanced</h1>
+              <h1 class="heading heading__primary--sub">Avançado</h1>
             </div>
           </div>
 
           <div class="card card--group">
             <div class="card__description">
               <h1 class="heading heading__primary">C#</h1>
-              <h1 class="heading heading__primary--sub">Medium</h1>
+              <h1 class="heading heading__primary--sub">Médio</h1>
             </div>
           </div>
 
           <div class="card card--group">
             <div class="card__description">
               <h1 class="heading heading__primary">NodeJs</h1>
-              <h1 class="heading heading__primary--sub">Medium</h1>
+              <h1 class="heading heading__primary--sub">Médio</h1>
             </div>
           </div>
 
           <div class="card card--group">
             <div class="card__description">
               <h1 class="heading heading__primary">React</h1>
-              <h1 class="heading heading__primary--sub">Basic/Medium</h1>
+              <h1 class="heading heading__primary--sub">Básico</h1>
             </div>
           </div>
 
           <div class="card card--group">
             <div class="card__description">
               <h1 class="heading heading__primary">Css</h1>
-              <h1 class="heading heading__primary--sub">Advanced</h1>
+              <h1 class="heading heading__primary--sub">Avançado</h1>
             </div>
           </div>
 
           <div class="card card--group">
             <div class="card__description">
               <h1 class="heading heading__primary">Azure Devops</h1>
-              <h1 class="heading heading__primary--sub">Basic/Medium</h1>
+              <h1 class="heading heading__primary--sub">Básico</h1>
             </div>
           </div>
 
@@ -189,8 +187,8 @@
 
       <section class="section section__contact" id="contact">
         <h1 class="heading heading__primary section__title">
-          <span class="section__title--front">Contact</span>
-          <span class="section__title--back">Contact</span>
+          <span class="section__title--front">Contato</span>
+          <span class="section__title--back">Contato</span>
         </h1>
 
         <div class="row">
@@ -200,20 +198,28 @@
               <h1 class="heading heading__primary--sub">Blumenau - SC</h1>
 
               <div class="line-title">
-                <span class="line-title__title">Phone:</span>
+                <span class="line-title__title">Whatsapp:</span>
                 <span class="line-title__sub-title">
                   <a class="line-title__link"
-                    href="https://api.whatsapp.com/send?phone=+5547999001812&text=Hi Ricardo, I'm see your profile in your webpage and a have interested your job!"
-                    target="_blank">(47)9
-                    9900-1812</a>
+                    href="https://api.whatsapp.com/send?phone=+5547999001812&text=Oi Ricardo, vi seu site e fiquei interessado no seu trabalho"
+                    target="_blank">
+                    <span>(47)9 9900-1812</span>
+                    <svg class="line-title__icon">
+                      <use xlink:href="images/sprite.svg#icon-new-tab"></use>
+                    </svg>
+                  </a>
                 </span>
               </div>
 
               <div class="line-title">
                 <span class="line-title__title">E-mail:</span>
                 <span class="line-title__sub-title">
-                  <a class="line-title__link" href="mailto:ricardoguilhermearndt@gmail.com"
-                    target="_blank">ricardoguilhermearndt@gmail.com</a>
+                  <a class="line-title__link" href="mailto:ricardoguilhermearndt@gmail.com" target="_blank">
+                    <span>ricardoguilhermearndt@gmail.com</span>
+                    <svg class="line-title__icon">
+                      <use xlink:href="images/sprite.svg#icon-new-tab"></use>
+                    </svg>
+                  </a>
                 </span>
               </div>
             </div>
@@ -222,10 +228,23 @@
       </section>
 
       <footer class="footer">
-        &copy; Copyright 2022 Hands On
+        <div class="copyright">
+          <div class="copyright__text">
+            &copy; Copyright <span id="current-year"></span>
+          </div>
+
+          <div class="copyright__brand">
+            Ricardo Guilherme Arndt
+          </div>
+        </div>
       </footer>
     </div>
   </div>
+
+  <script>
+    const currentYearElement = document.getElementById('current-year');
+    currentYearElement.innerText = ` ${new Date().getFullYear()}`;
+  </script>
 </body>
 
 </html>
